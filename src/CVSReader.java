@@ -3,6 +3,12 @@ import java.util.Scanner;
 import java.io.File;
 
 public abstract class CVSReader {
+	/**
+	 * This method receives a file path, reads its data and parses it to a float Matrix.
+	 * 
+	 * @param file_Path The relative or absolute path for the CVS file containing data.
+	 * @return Float matrix.
+	 */
 	public static float[][] read(String file_Path) {
 		ArrayList<float[]> temp_matrix = new ArrayList<>();
 		
