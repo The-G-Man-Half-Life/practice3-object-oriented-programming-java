@@ -1,3 +1,5 @@
+import utils.CVSReader;
+
 public class Main {
 	public static void main(String[] args) {
 		// First we need to read the values from the CVS given.
