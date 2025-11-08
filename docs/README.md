@@ -1,6 +1,6 @@
-# Practice Number 2 - Logical Programming in ProLog
+# Practice Number 3 - Object Oriented Programming in Java
 
-This project contains 2 distinct modules both having distinct knowledge databases and different queries that try to answer some common petitions that an user could have related to the information contained inside the knowledge databases being the first focused on computing platforms and the second one focused on trips and travels.
+This project is focused on developing multiple linear regression models to predict data with a high level of certainty by implementing some basic functionalities such as: "fit"(Training the model), and also obtaining information to compare the results with some real data and therefore calculate information such as: "weights"(indicates how much influence has the data on the results) and "bias"(indicates the sistematic error that the model has when comparing the obtained data with the real data)
 
 ## Contents
 - `challenge1_database`
@@ -525,3 +525,4 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
