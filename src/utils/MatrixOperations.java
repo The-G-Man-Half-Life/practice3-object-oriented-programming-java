@@ -292,7 +292,7 @@ public abstract class MatrixOperations {
 	public static void soutMatrix(double[][] matrix) {
 		for(double[] row : matrix) {
 			for (double n : row)
-				System.out.print(n + " ");
+				System.out.print("\t" + n);
 			System.out.println();
 		}
 	}

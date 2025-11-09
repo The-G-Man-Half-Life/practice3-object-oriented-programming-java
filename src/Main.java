@@ -10,22 +10,6 @@ public class Main {
 		System.out.println("Rows: " + data.length);
 		System.out.println("Colums: " + data[0].length);
 
-		double[][] a = {
-			{1, 2},
-			{3, 4}
-		};
-
-		double[][] b = {
-			{2, 0},
-			{1, 2}
-		};
-
-		try {
-			double[][] c = MatrixOperations.multiplyMatrix(a, b);
-			MatrixOperations.soutMatrix(c);
-		} catch (Exception e) {System.out.println(e.getMessage());}
-
-		double[][] aInv = MatrixOperations.inverse(a);
-		MatrixOperations.soutMatrix(aInv);
+		MatrixOperations.soutMatrix(data);
 	}
 }
