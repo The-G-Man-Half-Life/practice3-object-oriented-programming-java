@@ -28,11 +28,50 @@ This project is focused on developing multiple linear regression models to predi
 
 ## Program Functionalities
 
-### \src\utils
+### Utils
 
 - **CVSReader.java**  
   It takes care of gathering all of the informations inside
-  IceCreamSellingData.cvs and StudentExamScores.cvs in an array of 
+  IceCreamSellingData.cvs and StudentExamScores.cvs in an array of doubles
+  and to do this it uses two secondary functions:
+  - *parseRows*  
+  Takes care of receiving the file path and the matrix in which the
+  information will be gathered and then by putting the information of a
+  data in a double list it puts it in the matrix as a row, so it does
+  every single data.
+  - *read*  
+  Takes care of creating the matrix then casting parseRows to do what
+  was said before and finally returns the matrix with all the info.
+
+- **MatrixOperations.java**  
+  It takes care of containing all the required matrix functions to develop
+  the multiple linear regression 
+  - *multiplyMatrix*  
+  Takes care of verifying that the matrixes about to be multiplied are
+  able to do so, and after the verification if they are incompatible the
+  function will return an error message in the opposite case it will return
+  the multiplied matrix.
+  - *transpose*  
+  Takes care of transposing the given matrix by turning the rows into columns.
+  After that it will return the transposed matrix.
+  - *inverse*
+  It generates the inverse of the matrix, suppossing it has a determinant
+  distinct from 0, and to do it so, it makes an augmented matrix with the
+  identity matrix and after that it uses the Gauss-Jordan method to obtain
+  its inverse.
+  - *jointMatrixHorizontal*
+  Takes care of joining two matrixes into one, having in mind that these
+  have the same amount of rows, making the new matrix one with the common
+  amount of rows but with the sum of the total amount of columns of the
+  two originals.
+  - *splitMatrixHorizontalLeft*
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the left.
+  - *splitMatrixHorizontalRight*
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the right.
+  - *getColumn*
+  Takes care of getting the column of matrix and then returns it as a vector
 
 #### queries
 
@@ -494,5 +533,6 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
