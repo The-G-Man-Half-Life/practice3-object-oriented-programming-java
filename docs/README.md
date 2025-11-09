@@ -54,24 +54,33 @@ This project is focused on developing multiple linear regression models to predi
   - *transpose*  
   Takes care of transposing the given matrix by turning the rows into columns.
   After that it will return the transposed matrix.
-  - *inverse*
+  - *inverse*  
   It generates the inverse of the matrix, suppossing it has a determinant
   distinct from 0, and to do it so, it makes an augmented matrix with the
   identity matrix and after that it uses the Gauss-Jordan method to obtain
   its inverse.
-  - *jointMatrixHorizontal*
+  - *jointMatrixHorizontal*  
   Takes care of joining two matrixes into one, having in mind that these
   have the same amount of rows, making the new matrix one with the common
   amount of rows but with the sum of the total amount of columns of the
   two originals.
-  - *splitMatrixHorizontalLeft*
+  - *splitMatrixHorizontalLeft*  
   Takes care of dividing the matrix into two of the same size but only
   returns the part in the left.
-  - *splitMatrixHorizontalRight*
+  - *splitMatrixHorizontalRight*  
   Takes care of dividing the matrix into two of the same size but only
   returns the part in the right.
-  - *getColumn*
-  Takes care of getting the column of matrix and then returns it as a vector
+  - *getColumn*  
+  Takes care of getting the column of matrix and then returns it as a vector.
+  - *subtractVectors*
+  Takes care of subtracting one vector with another one and finally it returns
+  the subtracted vector.
+  - *multiplyVector*
+  Take care of multiplying a vector with a scalar from the Real numbers and then
+  returns the multiplied vector.
+  - *divideVector*
+  Take care of dividing a vector by a scalar from the Real numbers and then returns
+  the simplified vector.
 
 #### queries
 
@@ -533,6 +542,7 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
