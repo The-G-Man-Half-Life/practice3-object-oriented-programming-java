@@ -1,69 +1,38 @@
 # Practice Number 3 - Object Oriented Programming in Java
 
-This project is focused on developing multiple linear regression models to predict data with a high level of certainty by implementing some basic functionalities such as: "fit"(Training the model), and also obtaining information to compare the results with some real data and therefore calculate information such as: "weights"(indicates how much influence has the data on the results) and "bias"(indicates the sistematic error that the model has when comparing the obtained data with the real data)
+This project is focused on developing multiple linear regression models to predict data with a high level of certainty by implementing some basic functionalities such as: "fit"(Train the model), predict(obtain predictions), score(computes prediction errors) and data scaling(scaling the data). All this for obtaining information to compare the results with some real data and therefore calculate information such as: "weights"(indicates how much influence has the data on the results) and "bias"(indicates the sistematic error that the model has when comparing the obtained data with the real data).
 
 ## Contents
-- `challenge1_database`
-  - `src`
-    - `complexQueries`
-      - `bestCPAfter2023.pl`
-      - `mostCommCPUGPUManComb.pl`
-      - `mostCommRamVRamInGBComb.pl`
-      - `worstCPBefore2023.pl`
-    - `queries`
-      - `amdAfter2021.pl`
-      - `amountOfCPASUS.pl`
-      - `cpHDBetween.pl`
-      - `laptopsRamHD.pl`
-      - `tablet2PlusGBRam.pl`
-    - `facts.pl`
-  - `main.pl`
- - `challenge2_TPS`
-    - `filters_Optimals.pl`
-    - `main.pl`
-    - `outputs.pl`
-    - `route_facts.pl`
-    - `routes_logic.pl`
-  - `video`
-    - `link.txt`
+- `data`
+  - `IceCreamSellingData.csv`
+  - `StudentExamScores.csv`
+- `docs`
   - `README.md`
+  - `VideoLink.txt`
+- `output`
+  - `predictionsMultiple.txt`
+  - `predictionsSimple.txt`
+- `src`
+  - `models`
+    - `DataScaler.java`
+    - `Dataset.java`
+    - `LinearRegression.java`
+    - `Metrics.java`
+  - `tests`
+    - `MultipleRegressionTest.java`
+    - `SimpleRegressionTest.java`
+  - `utils`
+    - `CVSReader.java`
+    - `MatrixOperations.java`
+  - `Main.java`
 
 ## Program Functionalities
 
-### 1) challenge1_database
+### \src\utils
 
-#### complexQueries
-
-- **bestCPAfter2023.pl**  
-  Takes care of finding the best computing platform after 2023 from facts.pl
-  implementing a punctuation system and a recursive function that organizez
-  them highest to lowest punctuation and then takes the element in the top
-  which is according to the punctuation system the best computing platform.
-
-- **mostCommCPUGPUManComb.pl**  
-  Takes care of finding the most common CPU/GPU manufacturer combinations
-  for each trademark using the data from facts.pl. This is achieved by
-  only taking into account the trademark, the CPU manufacturer and the
-  GPU manufacturer. Then by using a recursive a function it counts the
-  amount of apparitions of every CPU and GPU manufacturer combination
-  to finally in another function organize it from highest to lowest
-  count so It can finally choose the one in the Head of the list as it
-  is the one with the highest count
-
-- **mostCommRamVRamInGBComb.pl**  
-  Takes care of finding the most common Ram/VRam in GB combination using the
-  data from facts.pl. It does it by gathering only The Ram and VRam, in GB,
-  from each computing platform from facts.pl and then using these combinations
-  to count the amount of apparitions of every unique Ram/VRam combination to
-  finally sort it from highest to lowest count and finally taking the one which
-  is at the top of the sort as it is the one with the biggest amount of counts.
-
-- **worstCPBefore2023.pl**  
-  Takes care of finding the worst computing platform before 2023 from facts.pl.
-  It does it by implementing a punctuation system which gives a certain value
-  to each accountable characteristic from the computing platforms and then by
-  by using a function that sort from lowest to highest we take the first item
-  which is the worst according to the punctuation system given.
+- **CVSReader.java**  
+  It takes care of gathering all of the informations inside
+  IceCreamSellingData.cvs and StudentExamScores.cvs in an array of 
 
 #### queries
 
@@ -525,4 +494,5 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
