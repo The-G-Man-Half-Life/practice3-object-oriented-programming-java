@@ -4,41 +4,34 @@ import utils.MatrixOperations;
 
 public class Main {
 	public static void main(String[] args) {
+		test("..\\data\\StudentExamScores.csv");
+		test("..\\data\\IceCreamSellingData.csv");
+	}
+
+	// Testing fucntion.
+	public static void test(String dataFilePath) {
 		// First we need to read the values from the CVS given.
 		// We can stablish a new class that is only about this.
-		double[][] dataStudent = CVSReader.read("..\\data\\StudentExamScores.csv");
+		double[][] data = CVSReader.read(dataFilePath);
 		
 		// With the data already in side a Matrix we must only divide the output, which just so happens to be the last column.
 
-		int n1 = dataStudent[0].length;
-		double[][] x1 = MatrixOperations.splitMatrixHorizontalLeft(dataStudent, n1 - 1);
-		double[] y1 = MatrixOperations.getColumn(dataStudent, n1 - 1);
+		int n = data[0].length;
+		// Matrix of data.
+		double[][] x = MatrixOperations.splitMatrixHorizontalLeft(data, n - 1);
 
-		LinearRegression mlr1 = new LinearRegression();
-		mlr1.fit(x1, y1);
+		// Vector of results
+		double[] y = MatrixOperations.getColumn(data, n - 1);
 
-		System.out.println("Weights:");
-		MatrixOperations.soutVector(mlr1.getWeights());
+		// Linear Regresion
+		LinearRegression mlr = new LinearRegression();
+		mlr.fit(x, y);
 
-		System.out.println("\nBias: " + mlr1.getBias());
-
-		
-		// First we need to read the values from the CVS given.
-		// We can stablish a new class that is only about this.
-		double[][] dataIceCream = CVSReader.read("..\\data\\IceCreamSellingData.csv");
-		
-		// With the data already in side a Matrix we must only divide the output, which just so happens to be the last column.
-
-		int n2 = dataIceCream[0].length;
-		double[][] x2 = MatrixOperations.splitMatrixHorizontalLeft(dataIceCream, n2 - 1);
-		double[] y2 = MatrixOperations.getColumn(dataIceCream, n2 - 1);
-
-		LinearRegression mlr2 = new LinearRegression();
-		mlr2.fit(x2, y2);
-
-		System.out.println("Weights:");
-		MatrixOperations.soutVector(mlr2.getWeights());
-
-		System.out.println("\nBias: " + mlr2.getBias());
+		System.out.println("\nTest for data in \"" + dataFilePath + "\"");
+		System.out.print("Weights:");
+		MatrixOperations.soutVector(mlr.getWeights());
+		System.out.println("Bias: " + mlr.getBias());
+		System.out.println("Score: " + mlr.score(x, y));
+		System.out.println("\n");
 	}
 }
