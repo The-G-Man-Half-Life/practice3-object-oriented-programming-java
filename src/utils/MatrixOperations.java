@@ -105,7 +105,7 @@ public abstract class MatrixOperations {
 
 
 	/**
-	 * This function divides the matrix into two and returns the first part.
+	 * This function splits <b>horizontally</b> the matrix into two and returns the first part.
 	 * @param matrix Matrix to split.
 	 * @param column Column(Index) from which the second part is discarded.
 	 * @return First part of the input matrix.
@@ -127,7 +127,7 @@ public abstract class MatrixOperations {
 
 
 	/**
-	 * This function divides the matrix into two and returns the second part.
+	 * This function splits <b>horizontally</b> the matrix into two and returns the second part.
 	 * @param matrix Matrix to split.
 	 * @param column Column(Index) up until the first part is discarded.
 	 * @return Second part of the input matrix.
@@ -149,6 +149,50 @@ public abstract class MatrixOperations {
 
 
 	/**
+	 * This function splits <b>vertically</b> the matrix into two and returns the upper part.
+	 * @param matrix Matrix to split.
+	 * @param row Row(Index) from which the lower part is discarded.
+	 * @return Upper part of the input matrix.
+	 */
+	public static double[][] splitMatrixVerticallTop(double[][] matrix, int row) {
+		int n = row;
+		int m = matrix[0].length;
+
+		double[][] splitMatrix = new double[n][m];
+
+		// We copy the given values.
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+				splitMatrix[i][j] = matrix[i][j];
+
+		return splitMatrix;
+	}
+
+
+
+	/**
+	 * This function splits <b>vertically</b> the matrix into two and returns the lower part.
+	 * @param matrix Matrix to split.
+	 * @param row Row(Index) up until the upper part is discarded.
+	 * @return Lower part of the input matrix.
+	 */
+	public static double[][] splitMatrixVerticallBotton(double[][] matrix, int row) {
+		int n = matrix.length - row;
+		int m = matrix[0].length;
+
+		double[][] splitMatrix = new double[n][m];
+
+		// We copy the given values.
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+				splitMatrix[i][j] = matrix[row + i][j];
+
+		return splitMatrix;
+	}
+
+
+
+	/**
 	 * This method returns a column of a Matrix as a single vector (array).
 	 * @param matrix {@code double[][]}
 	 * @param column Integer index of Columnto be extracted.
@@ -161,6 +205,23 @@ public abstract class MatrixOperations {
 		for (int i = 0; i < n; i++)
 			column[i] = matrix[i][columnIndex];
 
+		return column;
+	}
+
+
+
+	/**
+	 * This method returns any 1D array (vector), of dimention N, as a column matrix (of dimention Nx1).
+	 * @param vector To be turned into a column.
+	 * @return {@code double[][]} Matrix of dimention Nx1.
+	 */
+	public static double[][] toColumnMatrix(double[] vector) {
+		int n = vector.length;
+
+		double[][] column = new double[n][1];
+
+		for (int i = 0; i < n; i++)
+			column[i][0] = vector[i];
 		return column;
 	}
 
@@ -288,12 +349,26 @@ public abstract class MatrixOperations {
 
 
 
-	// Temporal
+	/**
+	 * This method prints a Matrix in a visually inituive way.
+	 * @param matrix To print.
+	 */
 	public static void soutMatrix(double[][] matrix) {
 		for(double[] row : matrix) {
 			for (double n : row)
 				System.out.print("\t" + n);
 			System.out.println();
 		}
+	}
+
+
+
+	/**
+	 * This method prints a Vector (Array) in an intiutive way.
+	 * @param vector To print
+	 */
+	public static void soutVector(double[] vector) {
+		for (double n : vector)
+			System.out.println("\t" + n);
 	}
 }

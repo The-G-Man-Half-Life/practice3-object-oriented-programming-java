@@ -17,9 +17,8 @@ public abstract class CVSReader {
 		double[][] matrix = new double[tempMatrix.size()][];
 		for (int i = 0; i < matrix.length; i++)
 			matrix[i] = tempMatrix.get(i);
-
-		// Because what the teacher said but I still don't get it.
-		return MatrixOperations.transpose(matrix);
+		
+		return matrix;
 	}
 
 	private static ArrayList<double[]> parseRows(String file_Path, ArrayList<double[]> temp_matrix) {
