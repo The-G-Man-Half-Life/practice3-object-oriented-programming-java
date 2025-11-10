@@ -14,17 +14,14 @@ This project is focused on developing multiple linear regression models to predi
   - `predictionsSimple.txt`
 - `src`
   - `models`
-    - `DataScaler.java`
-    - `Dataset.java`
     - `LinearRegression.java`
-    - `Metrics.java`
   - `tests`
-    - `MultipleRegressionTest.java`
-    - `SimpleRegressionTest.java`
+    - `LinearRegressionTest.java`
   - `utils`
     - `CVSReader.java`
     - `MatrixOperations.java`
   - `Main.java`
+- `.gitignore`
 
 ## Program Functionalities
 
@@ -45,7 +42,7 @@ This project is focused on developing multiple linear regression models to predi
 
 - **MatrixOperations.java**  
   It takes care of containing all the required matrix functions to develop
-  the multiple linear regression 
+  the multiple linear regression model such as:
   - *multiplyMatrix*  
   Takes care of verifying that the matrixes about to be multiplied are
   able to do so, and after the verification if they are incompatible the
@@ -70,95 +67,99 @@ This project is focused on developing multiple linear regression models to predi
   - *splitMatrixHorizontalRight*  
   Takes care of dividing the matrix into two of the same size but only
   returns the part in the right.
-  - *getColumn*  
-  Takes care of getting the column of matrix and then returns it as a vector.
-  - *subtractVectors*
+  - *splitMatrixVerticalTop*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the top.
+  - *splitMatrixVerticalBottom*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the bottom.
+  - *toColumnMatrix*  
+  Takes care of turning rows into columns.
+  - *gaussJordan*  
+  It replicates the gauss jordan method to obtain the reduced stepped matrix.
+  - *splitMatrixVerticalTop*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the top.
+  - *subtractVectors*  
   Takes care of subtracting one vector with another one and finally it returns
   the subtracted vector.
-  - *multiplyVector*
-  Take care of multiplying a vector with a scalar from the Real numbers and then
+  - *multiplyVector*  
+  Takes care of multiplying a vector with a scalar from the Real numbers and then
   returns the multiplied vector.
-  - *divideVector*
-  Take care of dividing a vector by a scalar from the Real numbers and then returns
+  - *divideVector*  
+  Takes care of dividing a vector by a scalar from the Real numbers and then returns
   the simplified vector.
+  - *swappingRow*  
+  Swapes two rows of one matrix given.
+  - *getIdentityMatrix*  
+  Returns a square identity matrix according to the requested size.
+  - *soutMatrix*  
+  Method implemented to print the matrixes in a visually understandable way.
+  - *soutVector*  
+  Prints the vector of a given array in a a visually understandable way.
 
-#### queries
+### Models
 
-- **amdAfter2021.pl**  
-  Takes care of finding all the computing platforms with AMD CPU after 2021
-  from facts.pl.This is achieved by only choosing those computing platforms
-  that go according to the conditions given then all of them are gathered
-  in a list and finally printed all this using recursion.
+- **LinearRegression.java**  
+  This is the main model that takes care of handling the attributes behind the linear
+  regression model such as the weight and the bias needed for the model but also
+  the means and the stds required for the data scaling process. Nonetheless it also
+  contains the methods to make the linear regression model work such as:
+  - *fit*  
+  Takes care of training the model by implementing the normal equation but for that
+  it casts some other methods from the MatrixOperations.java file the normal equation
+  process occurs in this way: It scales the data, then to obtain the bias ,it transposes
+  the matrix, multiplies the transposed matrix with the original one, obtains the inverse
+  matrix obtained from the last process, then multiplies this matrix with the data that
+  is wished to predict the data from and finally it extracts the bias  and the weight after
+  that this process occurs. This proccess occurs using these next  methods respectively:
+  dataScaling, addBiasColumn, MatrixOperations.transpose, MatrixOperations.multiplyMatrix,
+  MatrixOperations.inverse, MatrixOperations.multiplyMatrix, MatrixOperations.multiplyMatrix
+  and lastly getColumn. This method does this entire process in a try catch method to notify
+  possible errors.
+  - *dataScaling*  
+  By using a process known as standardization it calculates the means and standard
+  deviations(stds) so in that way it can scale the data to some more reasonable values that
+  the model can work with. Eviting some big scale weight problems due to the inmensity of
+  some values.
+  - *predict(double[] x)*  
+  This metod takes care of predicting the results of the given data by using the weight
+  and the bias obtained previously.
+  - *predict(double[][] x)*  
+  This method takes care of returning the predicted values by using the method before and
+  it stores them in a list of doubles.
+  - *score*  
+  Calculates how well the model fits the data using the R^2 score formula:
+  R^2 = 1 - (sum of squared errors / total sum of squares).
+  - *addBiasColumn*  
+  Takes care of adding a column full of ones that can be used with the original matrix so
+  after the normal equation is done it can return the bias.
+  - *mean*  
+  Takes care of callculating the average of the true values of Y.
 
-- **amountOfCPASUS.pl**  
-  Takes care of counting the amount of computing platforms from ASUS and also
-  displaying all of the ASUS computing platforms from facts.pl. This is
-  achieved by only choosing those computing platforms that go according
-  to the conditions given then all of them are gathered in a list and then
-  counted using a recursive function and with the list of computing platforms
-  and the count gathered all these informations are printed.
+#### Examples of the outputs of the multiple linear regression test:
 
-- **cpHDBetween.pl**  
-  Takes care of finding all the computing platforms with hard disk capacities
-  between 32 and 512 GB from facts.pl. This is achieved by only choosing those
-  computing platforms that go according to the conditions given then all of
-  them are gathered in a list and and with the list of computing platforms
-  all these informations are printed.
+```Java
+Multiple linear regression test:
 
-- **laptopsRamHD.pl**  
-  Takes care of finding all the computing platforms where the type of computing
-  platform is a laptop, it has more than 4 GB of RAM and less than 512 GB of
-  hard disk from facts.pl.This is achieved by only choosing those computing
-  platforms that go according to the conditions given then all of them are
-  gathered in a list and and with the list of computing platforms all these
-  informations are printed.
+Test for data in "..\data\StudentExamScores.csv" (scaled)
+Weights:        5.0067527724969745
+        1.42209313763438
+        1.5406796290272569
+        2.7700144113385123
+Bias: 33.95499999999999
+Score: -2590.6793944563465
+```
 
-- **tablet2PlusGBRam.pl**  
-  Takes care of finding all the tablets with more than 2 GB of RAM from facts.pl.
-  This is achieved by only choosing those computing platforms that go according
-  to the conditions given then all of them are gathered in a list and and with
-  the list of computing platforms all these informations are printed.
+#### Examples of the outputs of the simple linear regression test:
 
-### 2) challenge2_TPS
+```Java
+Simple linear regression test:
 
-This module represents a **Travel Planning System (TPS)** implemented in Prolog.
-It calculates all possible travel routes between two cities, including direct trips and multi-step routes, while showing total cost and duration. It also includes filters to find routes within specific time ranges or by cheapest/fastest criteria.
-
-#### Files and their roles
-
-- **route_facts.pl**  
-  Contains the knowledge base with all available travel routes, including origin, destination, transport type, departure time, arrival time, cost, and availability.
-
-- **routes_logic.pl**  
-  Defines the recursive logic that finds both direct and multi-stop routes.  
-  It uses a “Visited” list to prevent loops and sums up the total cost and travel time.
-
-- **filters_Optimals.pl**  
-  Implements filters to only include routes within specific departure time windows and functions to determine the cheapest or fastest available route.
-
-- **outputs.pl**  
-  Handles all user-facing outputs, such as formatted printing of route segments, total costs, and total travel times.
-
-- **main.pl**  
-  The main module that ties all others together. It provides easy-to-use commands for users to query and print all routes, or find the cheapest or fastest options.
-
-#### Example Queries and Outputs for challenge2_TPS
-
-```prolog
-  % Load main module
-  ?- [main].
-
-  % List all available routes between two cities
-  ?- print_All(bogota, medellin).
-
-  % List routes within a departure time range (6 to 12)
-  ?- print_All(bogota, medellin, 6, 12).
-
-  % Find the cheapest available route between two cities
-  ?- print_Cheapest(bogota, cartagena).
-
-  % Find the fastest available route between two cities
-  ?- print_Fastest(bogota, cartagena).
+Test for data in "..\data\IceCreamSellingData.csv" (scaled)
+Weights:        -2.126542401250901
+Bias: 15.9053078409119
+Score: -0.057167211738001544
 ```
 
 ## Problems and errors during the development
@@ -542,6 +543,7 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
