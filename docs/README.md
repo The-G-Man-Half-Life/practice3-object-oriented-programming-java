@@ -1,0 +1,548 @@
+# Practice Number 3 - Object Oriented Programming in Java
+
+This project is focused on developing multiple linear regression models to predict data with a high level of certainty by implementing some basic functionalities such as: "fit"(Train the model), predict(obtain predictions), score(computes prediction errors) and data scaling(scaling the data). All this for obtaining information to compare the results with some real data and therefore calculate information such as: "weights"(indicates how much influence has the data on the results) and "bias"(indicates the sistematic error that the model has when comparing the obtained data with the real data).
+
+## Contents
+- `data`
+  - `IceCreamSellingData.csv`
+  - `StudentExamScores.csv`
+- `docs`
+  - `README.md`
+  - `VideoLink.txt`
+- `output`
+  - `predictionsMultiple.txt`
+  - `predictionsSimple.txt`
+- `src`
+  - `models`
+    - `DataScaler.java`
+    - `Dataset.java`
+    - `LinearRegression.java`
+    - `Metrics.java`
+  - `tests`
+    - `MultipleRegressionTest.java`
+    - `SimpleRegressionTest.java`
+  - `utils`
+    - `CVSReader.java`
+    - `MatrixOperations.java`
+  - `Main.java`
+
+## Program Functionalities
+
+### Utils
+
+- **CVSReader.java**  
+  It takes care of gathering all of the informations inside
+  IceCreamSellingData.cvs and StudentExamScores.cvs in an array of doubles
+  and to do this it uses two secondary functions:
+  - *parseRows*  
+  Takes care of receiving the file path and the matrix in which the
+  information will be gathered and then by putting the information of a
+  data in a double list it puts it in the matrix as a row, so it does
+  every single data.
+  - *read*  
+  Takes care of creating the matrix then casting parseRows to do what
+  was said before and finally returns the matrix with all the info.
+
+- **MatrixOperations.java**  
+  It takes care of containing all the required matrix functions to develop
+  the multiple linear regression 
+  - *multiplyMatrix*  
+  Takes care of verifying that the matrixes about to be multiplied are
+  able to do so, and after the verification if they are incompatible the
+  function will return an error message in the opposite case it will return
+  the multiplied matrix.
+  - *transpose*  
+  Takes care of transposing the given matrix by turning the rows into columns.
+  After that it will return the transposed matrix.
+  - *inverse*  
+  It generates the inverse of the matrix, suppossing it has a determinant
+  distinct from 0, and to do it so, it makes an augmented matrix with the
+  identity matrix and after that it uses the Gauss-Jordan method to obtain
+  its inverse.
+  - *jointMatrixHorizontal*  
+  Takes care of joining two matrixes into one, having in mind that these
+  have the same amount of rows, making the new matrix one with the common
+  amount of rows but with the sum of the total amount of columns of the
+  two originals.
+  - *splitMatrixHorizontalLeft*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the left.
+  - *splitMatrixHorizontalRight*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the right.
+  - *getColumn*  
+  Takes care of getting the column of matrix and then returns it as a vector.
+  - *subtractVectors*
+  Takes care of subtracting one vector with another one and finally it returns
+  the subtracted vector.
+  - *multiplyVector*
+  Take care of multiplying a vector with a scalar from the Real numbers and then
+  returns the multiplied vector.
+  - *divideVector*
+  Take care of dividing a vector by a scalar from the Real numbers and then returns
+  the simplified vector.
+
+#### queries
+
+- **amdAfter2021.pl**  
+  Takes care of finding all the computing platforms with AMD CPU after 2021
+  from facts.pl.This is achieved by only choosing those computing platforms
+  that go according to the conditions given then all of them are gathered
+  in a list and finally printed all this using recursion.
+
+- **amountOfCPASUS.pl**  
+  Takes care of counting the amount of computing platforms from ASUS and also
+  displaying all of the ASUS computing platforms from facts.pl. This is
+  achieved by only choosing those computing platforms that go according
+  to the conditions given then all of them are gathered in a list and then
+  counted using a recursive function and with the list of computing platforms
+  and the count gathered all these informations are printed.
+
+- **cpHDBetween.pl**  
+  Takes care of finding all the computing platforms with hard disk capacities
+  between 32 and 512 GB from facts.pl. This is achieved by only choosing those
+  computing platforms that go according to the conditions given then all of
+  them are gathered in a list and and with the list of computing platforms
+  all these informations are printed.
+
+- **laptopsRamHD.pl**  
+  Takes care of finding all the computing platforms where the type of computing
+  platform is a laptop, it has more than 4 GB of RAM and less than 512 GB of
+  hard disk from facts.pl.This is achieved by only choosing those computing
+  platforms that go according to the conditions given then all of them are
+  gathered in a list and and with the list of computing platforms all these
+  informations are printed.
+
+- **tablet2PlusGBRam.pl**  
+  Takes care of finding all the tablets with more than 2 GB of RAM from facts.pl.
+  This is achieved by only choosing those computing platforms that go according
+  to the conditions given then all of them are gathered in a list and and with
+  the list of computing platforms all these informations are printed.
+
+### 2) challenge2_TPS
+
+This module represents a **Travel Planning System (TPS)** implemented in Prolog.
+It calculates all possible travel routes between two cities, including direct trips and multi-step routes, while showing total cost and duration. It also includes filters to find routes within specific time ranges or by cheapest/fastest criteria.
+
+#### Files and their roles
+
+- **route_facts.pl**  
+  Contains the knowledge base with all available travel routes, including origin, destination, transport type, departure time, arrival time, cost, and availability.
+
+- **routes_logic.pl**  
+  Defines the recursive logic that finds both direct and multi-stop routes.  
+  It uses a “Visited” list to prevent loops and sums up the total cost and travel time.
+
+- **filters_Optimals.pl**  
+  Implements filters to only include routes within specific departure time windows and functions to determine the cheapest or fastest available route.
+
+- **outputs.pl**  
+  Handles all user-facing outputs, such as formatted printing of route segments, total costs, and total travel times.
+
+- **main.pl**  
+  The main module that ties all others together. It provides easy-to-use commands for users to query and print all routes, or find the cheapest or fastest options.
+
+#### Example Queries and Outputs for challenge2_TPS
+
+```prolog
+  % Load main module
+  ?- [main].
+
+  % List all available routes between two cities
+  ?- print_All(bogota, medellin).
+
+  % List routes within a departure time range (6 to 12)
+  ?- print_All(bogota, medellin, 6, 12).
+
+  % Find the cheapest available route between two cities
+  ?- print_Cheapest(bogota, cartagena).
+
+  % Find the fastest available route between two cities
+  ?- print_Fastest(bogota, cartagena).
+```
+
+## Problems and errors during the development
+
+### complexQueries
+
+**bestCPAfter2023.pl**  
+- Determining how to properly measure which devices are better than the
+  other ones.
+- Understanding what score to give to each characteristic based on its
+  importance for the device.
+- Making the logic behind the recursive method to choose the computing
+  platform with the highest punctuation.
+- Joining all of the queries to make the main query work.
+- Deciding how to display all of the gathered information so it can be
+  visually attractive
+
+**mostCommCPUGPUManComb.pl**  
+- Finding out how to make the logic for finding the most common CPU
+  manufacturer and GPU manufacturer for each trademark as this logic
+  was kind of complex having in mind the usage of recursion.
+- Designing the countOcurrences method so it could return the amount
+  of counts for each CPU/GPU manufacturer combination and also be the
+  backbone of the main query.
+- Finding out how to join all of the queries in the main one to make
+  everything work.
+ **mostCommRamVRamInGBComb.pl**  
+- Trying to make all of the functions generally usable not matter the
+  situation so these functions could be re used or reimplemented for
+  all the future queries.
+- Figuring out how to print all the information in a visually attractive
+  form as this query was pretty distinct compared to the other queries
+  made before in the way of printing the information. 
+
+- **worstCPBefore2023.pl**  
+  -Finding out how to re implement some old queries to make this new query
+   in the most optimal way possible.
+  -Understanding how to stablish dates and times properly to obtain the
+   correct facts and data. 
+
+### queries
+
+**amdAfter2021.pl**  
+  - Discovering the appropiate ways to print information implementing
+    recursion.
+
+**amountOfCPASUS.pl**  
+  - Naming the file. as the Brand is named ASUS and not Asus but it
+    could be misunderstood so it was decided to leave it in its normal
+    format as it is generally understood as the trademark.
+  - Making the function to count the amount of items that were gathered
+    during the proccess as this one had a different proccess of recursion.
+
+**cpHDBetween.pl**  
+  - Naming the file briefly and understandable as the goal of this
+    file is quite large to explain in a short file name format.
+
+**laptopsRamHD.pl**  
+  - Making the most visually appealing the header of the print list function
+    becase the original names were too large for each category so it was
+    necessary to find some short names.
+
+- **tablet2PlusGBRam.pl**  
+  - Having to change the knowledge database as there were not enough tablets
+    to make this query visibly good enough.
+
+### challenge2_TPS
+
+- Debugging variable scope issues in `findall/3` and ensuring that cost and time accumulated correctly through recursion.
+- Building filtering functions that use true/false return logic (instead of cuts) to allow declarative filtering by departure time.
+- Creating formatted outputs using `format/2` for readability in the terminal.
+- Handling syntax errors and directory navigation issues when running from the SWI-Prolog console inside a virtual machine.
+
+      
+### General problems throught the development
+
+   - Installing swish-Prolog and all of the nece-
+     ssary components to make it work because
+     Microsoft defender evited the installation of
+     certain files that were obligatory for the
+     proper function of Prolog.
+   - Understanding how to use Prolog in VSC as
+     Prolog has its own console to execute the
+     queries but we wanted to make it run on VSC's
+     console for proper testing and more
+     compatibility with Github and also due to
+     the extensions that VSC provides.
+   - Coordinating all the proccess through Github.
+     Since we divided the work between all members
+     coordinating how to use the tool appropiately
+     to evite fatal mistakes was really important
+     and also to inform the proper structures for
+     the documentation, the commentaries the kind
+     of typing for the code and the folder structure.
+   - Time organization and video preparation.
+   - Understanding how to use the modules to import
+     and export codes between files so in that way the
+     code could be more readable and better to maintain
+     along the whole process
+   - Understanding better the recursion as the prolog
+     kind of recursion is quite much different to the
+     one of haskell or an average POO one
+   - Understanding the new types of variables for the
+     facts since prolog includes the basic types but
+     also some new ones as Atoms but with different types
+     of atoms between each other.
+   - Understanding some new methods in Prolog such as
+     setof(), sort(), member() and findall() as these
+     methods had their unique ways of working and were
+     necessary for making the queries.
+     
+## Conclusions
+
+  - The development of this project taught us the im-
+    portance of learning and adapting to new languages
+    to sort all kind of problems and difficulties
+    specially when this brings a new understanding of
+    different kinds of programming paradigms.
+  - It is really important to understand how to sepa
+    rate properly all the functionalities and programs
+    inside the project to maintain a good cohesion and
+    order along the whole development proccess,
+    making it better to read and change if is necessary.
+  - It is necessary to understand the use of tools
+    such as Github and VSC to collaborate with other
+    people to bring to life all kind of different projects
+    one could ever have.
+  - Understanding Recursion can be pretty tedious and
+    annoying at first glance but learning it can open
+    a world of possibilities for iteration problems.
+  - Learning how to install new languages can be seen
+    as a challenge, specially prolog and its problem
+    with Microsoft Defender, but is really important
+    to deal with this kind of challenges for the future 
+  - The teamwork was really important in this project
+    as We helped each other and learned tons of things
+    of each other.
+  - Good expression and communication was vital to make a
+    good video.
+    
+## tests 
+
+```bash
+Output of `amdAfter2021PrintList/0`
+--------------------------------------------
+Trademark | Name | Serial number | Year of acquisition
+--------------------------------------------
+('HP'|'Omen 16'|'5CDV9D4N'|2023)
+--------------------------------------------
+('HP'|'Omen 15'|'5CDU1E5P'|2022)
+--------------------------------------------
+('Lenovo'|'LOQ 15 Gen 9'|'LNVW6D4N'|2023)
+--------------------------------------------
+('Lenovo'|'IdeaPad Gaming 3'|'LNVU1E5P'|2022)
+--------------------------------------------
+('ASUS'|'ROG Zephyrus G16'|'ASY8B2L'|2025)
+--------------------------------------------
+('ASUS'|'ROG Flow X13'|'ASZ7C3M'|2024)
+--------------------------------------------
+('ASUS'|'TUF Gaming A15'|'AST6D4N'|2023)
+--------------------------------------------
+('ASUS'|'ROG Flow Z13'|'ASTAB01'|2025)
+--------------------------------------------
+('MSI'|'Crosshair 17 HX'|'MSIU1E5P'|2024)
+--------------------------------------------
+('Razer'|'Blade 16 OLED'|'RZRY8B2L'|2025)
+--------------------------------------------
+('Razer'|'Blade 14 Ryzen'|'RZRW6D4N'|2023)
+--------------------------------------------
+('Dell'|'Alienware m15 R7'|'DLT3F6Q'|2023)
+--------------------------------------------
+('Razer'|'Tomahawk ATX'|'RZRDC02'|2024)
+--------------------------------------------
+
+Output of `amountOfCPASUSPrintList/0`
+--------------------------------------------
+This is the amount of ASUS computing platforms: 7
+--------------------------------------------
+These are all of the  ASUS computing platforms: 
+--------------------------------------------
+Name | Serial number | Year of acquisition | Type of Computing platform
+--------------------------------------------
+('ROG Strix Scar 18'|'ASX9A1Q'|2025|laptop)
+--------------------------------------------
+('ROG Zephyrus G16'|'ASY8B2L'|2025|laptop)
+--------------------------------------------
+('ROG Flow X13'|'ASZ7C3M'|2024|laptop)
+--------------------------------------------
+('TUF Gaming A15'|'AST6D4N'|2023|laptop)
+--------------------------------------------
+('ROG Strix G15'|'ASU1E5P'|2022|laptop)
+--------------------------------------------
+('ROG Flow Z13'|'ASTAB01'|2025|tablet)
+--------------------------------------------
+('ROG Flow Z13'|'ASTAB02'|2023|tablet)
+--------------------------------------------
+
+Output of `cpHDBetweenPrintList/0`
+--------------------------------------------
+Trademark | Name | Serial number | Hard disk capacity in GB
+--------------------------------------------
+('Lenovo'|'Legion Tab Gen 3'|'LNTG8A1X'|256)
+--------------------------------------------
+
+Output of `laptopsRamHDPrintList/0`
+--------------------------------------------
+This is the amount of Computing Platforms with
+more than 4 GB of Ram and less than 512 GB of 
+Hard Disk: 1
+--------------------------------------------
+These are all of the found computing platforms: 
+--------------------------------------------
+Name | Serial number | Ram capacity in GB | Hard disk capacity in GB
+--------------------------------------------
+('Legion Tab Gen 3'|'LNTG8A1X'|12|256)
+--------------------------------------------
+
+Output of `tablet2PlusGBRamPrintList/0`
+--------------------------------------------
+Trademark | Name | Serial number | Ram capacity in GB
+--------------------------------------------
+('Lenovo'|'Legion Tab Gen 3'|'LNTG8A1X'|12)
+--------------------------------------------
+('ASUS'|'ROG Flow Z13'|'ASTAB01'|128)
+--------------------------------------------
+('ASUS'|'ROG Flow Z13'|'ASTAB02'|32)
+--------------------------------------------
+('RedMagic'|'Astra Gaming Tablet'|'RDMTAB01'|24)
+--------------------------------------------
+('RedMagic'|'NOVA Gaming Tablet'|'RDMTAB02'|16)
+--------------------------------------------
+
+Output of `bestComputingPlatformPrint/0`
+--------------------------------------------
+The most powerful computing platform after 2023 is the: 
+Legion 9i Gen 10
+TradeMark: Lenovo
+Serial number: LNVX9A1Q
+Ram Capacity in GB: 192
+Amount of CPU Cores: 24
+Hard Disk Capacity in GB: 8192
+Type of Computing Platform: laptop
+VRam Capacity in GB: 24
+Total punctuation: 209.184
+--------------------------------------------
+
+Output of `allBrandsMostCommonPrintList/0`
+--------------------------------------------
+Trademark | (CPU manufacturer, GPU manufacturer) | Total amount of counts 
+--------------------------------------------
+('ASUS',(amd,nvidia),3)
+--------------------------------------------
+('Dell',(intel,nvidia),6)
+--------------------------------------------
+('HP',(intel,nvidia),6)
+--------------------------------------------
+('Lenovo',(intel,nvidia),4)
+--------------------------------------------
+('MSI',(intel,nvidia),9)
+--------------------------------------------
+('Razer',(intel,nvidia),3)
+--------------------------------------------
+('RedMagic',(qualcomm,qualcomm),2)
+--------------------------------------------
+
+Output of `ramVRamMostCommonComboPrint/0`
+--------------------------------------------
+The most common combination of Ram and VRam 
+capacity in GB is respectively: 32 and 8 with: 7 apparitions between all the 
+computing platforms.
+--------------------------------------------
+
+Output of `worstComputingPlatformPrint/0`
+--------------------------------------------
+The least powerful computing platform before 2023 is the: 
+Blade Stealth 13
+TradeMark: Razer
+Serial number: RZRU1E5P
+Ram Capacity in GB: 16
+Amount of CPU Cores: 4
+Hard Disk Capacity in GB: 512
+Type of Computing Platform: laptop
+VRam Capacity in GB: 0
+Total punctuation: 19.872
+--------------------------------------------
+
+Output of `print_All(bogota, medellin)`
+--------------------------------------------
+bogota (avion, 8->9, 100.0 USD)--> medellin
+---
+Costo Total: 100
+Tiempo: 1h
+--------------------------------------------
+bogota (bus, 6->16, 40.0 USD)--> medellin
+---
+Costo Total: 40
+Tiempo: 10h
+--------------------------------------------
+
+Output of `print_All(bogota, medellin, 6, 12)`
+--------------------------------------------
+bogota (avion, 8->9, 100.0 USD)--> medellin
+---
+Costo Total: 100
+Tiempo: 1h
+--------------------------------------------
+
+Output of `print_Cheapest(bogota, cartagena)`
+--------------------------------------------
+bogota (bus, 6->16, 40.0 USD)--> medellin
+medellin (bus, 7->19, 42.0 USD)--> cartagena
+---
+Costo Total: 82
+Tiempo: 22h
+--------------------------------------------
+
+Output of `print_Fastest(bogota, cartagena)`
+--------------------------------------------
+bogota (avion, 8->9, 100.0 USD)--> medellin
+medellin (bus, 7->19, 42.0 USD)--> cartagena
+---
+Costo Total: 142
+Tiempo: 13h
+--------------------------------------------
+```
+
+## Prerequisites to execute this repository
+- SWI‑Prolog (recommended >= 8.0). https://www.swi-prolog.org/Download.html
+- Visual Studio Code. https://code.visualstudio.com/download
+- Have stablished and set up everything for Prolog
+
+## Where to Use
+- It can be used in the Prolog own terminal or preferably use the
+powershell or VSC code terminal for better watch of code and execution.
+
+## How to Use
+- Watch the bash template to see how to execute every query.
+
+```bash
+# 1) Clone and enter the repo
+  git clone The-G-Man-Half-Life/practice2-logical-programming-prolog
+  cd practice2-logical-programming-prolog
+
+# 2) enter challenge 1 database queries
+  cd challenge1_database
+  
+  # To use both queries and complex queries
+  swipl main.pl
+  
+  # To execute the queries
+  ?- amdAfter2021PrintList.
+  ?- amountOfCPASUSPrintList.
+  ?- cpHDBetweenPrintList.
+  ?- laptopsRamHDPrintList.
+  ?- tablet2PlusGBRamPrintList.
+  
+  # To execute the complex queries
+  ?- bestComputingPlatformPrint.
+  ?- allBrandsMostCommonPrintList.
+  ?- ramVRamMostCommonComboPrint.
+  ?- worstComputingPlatformPrint.
+  
+  # To go back to the root :
+  ctrl + c
+  press e to exit
+  cd ..
+
+# 3) Enter challenge 2 Travel Planning System (TPS)
+  cd challenge2_TPS
+
+  # Load the main module
+  swipl main.pl
+
+  # Run example queries:
+  ?- print_All(bogota, medellin).
+  ?- print_All(bogota, medellin, 6, 7).
+  ?- print_Cheapest(bogota, santa_marta).
+  ?- print_Fastest(bogota, santa_marta).
+
+  # To exit Prolog:
+  ?- halt.
+```
+Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
+
+
+
