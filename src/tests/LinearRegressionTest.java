@@ -35,6 +35,9 @@ public class LinearRegressionTest {
 		System.out.print("Weights:");
 		MatrixOperations.soutVector(multipleLinearRegression.getWeights());
 		System.out.println("Bias: " + multipleLinearRegression.getBias());
+		double[] yHat = multipleLinearRegression.predict(dataX);
+		for (double yi : yHat)
+			System.out.println("Y^: " + yi);
 		System.out.println("Score: " + multipleLinearRegression.score(dataX, dataY));
 		System.out.println("\n");
     }
