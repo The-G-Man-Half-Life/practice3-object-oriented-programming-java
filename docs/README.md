@@ -122,6 +122,9 @@ This project is focused on developing multiple linear regression models to predi
   deviations(stds) so in that way it can scale the data to some more reasonable values that
   the model can work with. Eviting some big scale weight problems due to the inmensity of
   some values.
+  - *scaleRow*  
+  Scales a single row by using the means and the standard deviation obtained from the training.
+  It remains there if needed for scaling the project.
   - *predict(double[] x)*  
   This metod takes care of predicting the results of the given data by using the weight
   and the bias obtained previously.
@@ -135,7 +138,18 @@ This project is focused on developing multiple linear regression models to predi
   Takes care of adding a column full of ones that can be used with the original matrix so
   after the normal equation is done it can return the bias.
   - *mean*  
-  Takes care of callculating the average of the true values of Y.
+  Takes care of calculating the average of the true values of Y.
+
+### tests
+
+- **LinearRegressionTest.java**  
+  This is the model that takes care of gathering all the methods and required data to
+  execute the linear regression model
+  - *LinearRegressionTest*  
+  Takes care of gathering everything from the other models such as values, methods,
+  files etc... So output test can print the results.
+  - *outputTest*
+  This method takes care of printing all the results obtained from the test.
 
 #### Examples of the outputs of the multiple linear regression test:
 
@@ -543,6 +557,7 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
