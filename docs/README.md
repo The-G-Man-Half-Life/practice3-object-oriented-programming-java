@@ -140,7 +140,7 @@ This project is focused on developing multiple linear regression models to predi
   - *mean*  
   Takes care of calculating the average of the true values of Y.
 
-### tests
+### Tests
 
 - **LinearRegressionTest.java**  
   This is the model that takes care of gathering all the methods and required data to
@@ -150,6 +150,34 @@ This project is focused on developing multiple linear regression models to predi
   files etc... So output test can print the results.
   - *outputTest*
   This method takes care of printing all the results obtained from the test.
+
+## Program Extras
+
+### Data
+- **IceCreamSellingData.csv**  
+  Contains all the ice cream selling data in a scv format.
+- **StudentExamScores.csv**  
+  Contains all the student exam scores data in a scv format.
+  
+### Docs
+- **Readme.md**  
+  Contains this readme.md file
+- **VideoLink.txt**  
+  Contains the link to the video.
+
+### Output
+- **predictionsMultiple.txt**  
+  Contains the results after the predictions of the multiple linear regression
+  model implemented with the StudenExamScores.csv data.
+- **predictionsSimple.txt**  
+  Contains the results after the predicion of the simple linear regression model
+  implemented with the IceCreamSellingData.csv data.
+
+### Main.java:
+  The main file that takes care of executing the tests and the entire program.
+
+### .gitignore  
+  The file that takes care of ignoring class files if were pushed to git unintetionally.
 
 #### Examples of the outputs of the multiple linear regression test:
 
@@ -178,76 +206,45 @@ Score: -0.057167211738001544
 
 ## Problems and errors during the development
 
-### complexQueries
+### Utils
+- **CVSReader.java**  
+  -  
+- **MatrixOperations.java**  
+  - 
 
-**bestCPAfter2023.pl**  
-- Determining how to properly measure which devices are better than the
-  other ones.
-- Understanding what score to give to each characteristic based on its
-  importance for the device.
-- Making the logic behind the recursive method to choose the computing
-  platform with the highest punctuation.
-- Joining all of the queries to make the main query work.
-- Deciding how to display all of the gathered information so it can be
-  visually attractive
+### Models
+- **LinearRegression.java**  
+  -
 
-**mostCommCPUGPUManComb.pl**  
-- Finding out how to make the logic for finding the most common CPU
-  manufacturer and GPU manufacturer for each trademark as this logic
-  was kind of complex having in mind the usage of recursion.
-- Designing the countOcurrences method so it could return the amount
-  of counts for each CPU/GPU manufacturer combination and also be the
-  backbone of the main query.
-- Finding out how to join all of the queries in the main one to make
-  everything work.
- **mostCommRamVRamInGBComb.pl**  
-- Trying to make all of the functions generally usable not matter the
-  situation so these functions could be re used or reimplemented for
-  all the future queries.
-- Figuring out how to print all the information in a visually attractive
-  form as this query was pretty distinct compared to the other queries
-  made before in the way of printing the information. 
+### Tests
+- **LinearRegressionTest.java**  
+  -
 
-- **worstCPBefore2023.pl**  
-  -Finding out how to re implement some old queries to make this new query
-   in the most optimal way possible.
-  -Understanding how to stablish dates and times properly to obtain the
-   correct facts and data. 
+### Data
+- **IceCreamSellingData.csv**  
+  -
+- **StudentExamScores.csv**  
+  
+### Docs
+- **Readme.md**  
+  Contains this readme.md file
+- **VideoLink.txt**  
+  Contains the link to the video.
 
-### queries
+### Output
+- **predictionsMultiple.txt**  
+  Contains the results after the predictions of the multiple linear regression
+  model implemented with the StudenExamScores.csv data.
+- **predictionsSimple.txt**  
+  Contains the results after the predicion of the simple linear regression model
+  implemented with the IceCreamSellingData.csv data.
 
-**amdAfter2021.pl**  
-  - Discovering the appropiate ways to print information implementing
-    recursion.
+### Main.java:
+  -
 
-**amountOfCPASUS.pl**  
-  - Naming the file. as the Brand is named ASUS and not Asus but it
-    could be misunderstood so it was decided to leave it in its normal
-    format as it is generally understood as the trademark.
-  - Making the function to count the amount of items that were gathered
-    during the proccess as this one had a different proccess of recursion.
-
-**cpHDBetween.pl**  
-  - Naming the file briefly and understandable as the goal of this
-    file is quite large to explain in a short file name format.
-
-**laptopsRamHD.pl**  
-  - Making the most visually appealing the header of the print list function
-    becase the original names were too large for each category so it was
-    necessary to find some short names.
-
-- **tablet2PlusGBRam.pl**  
-  - Having to change the knowledge database as there were not enough tablets
-    to make this query visibly good enough.
-
-### challenge2_TPS
-
-- Debugging variable scope issues in `findall/3` and ensuring that cost and time accumulated correctly through recursion.
-- Building filtering functions that use true/false return logic (instead of cuts) to allow declarative filtering by departure time.
-- Creating formatted outputs using `format/2` for readability in the terminal.
-- Handling syntax errors and directory navigation issues when running from the SWI-Prolog console inside a virtual machine.
-
-      
+### .gitignore  
+  -
+  
 ### General problems throught the development
 
    - Installing swish-Prolog and all of the nece-
@@ -557,6 +554,7 @@ powershell or VSC code terminal for better watch of code and execution.
   ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
