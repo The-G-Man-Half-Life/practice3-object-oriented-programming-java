@@ -16,15 +16,18 @@ public class LinearRegressionTest {
         this.dataFilePath = path;
 
 		double[][] dataRaw = CVSReader.read(path);
+
+		// We first scalate the data.
+		double[][] dataScaled = multipleLinearRegression.dataScaling(dataRaw);
 		
 		// With the data already inside a Matrix we must only divide the output, which just so happens to be the last column.
-		int n = dataRaw[0].length;
+		int n = dataScaled[0].length;
 
 		// Matrix of data.
-		dataX = MatrixOperations.splitMatrixHorizontalLeft(dataRaw, n - 1);
+		dataX = MatrixOperations.splitMatrixHorizontalLeft(dataScaled, n - 1);
 
 		// Vector of results
-		dataY = MatrixOperations.getColumn(dataRaw, n - 1);
+		dataY = MatrixOperations.getColumn(dataScaled, n - 1);
 
 		// Linear Regresion
 		multipleLinearRegression.fit(dataX, dataY);
@@ -35,9 +38,6 @@ public class LinearRegressionTest {
 		System.out.print("Weights:");
 		MatrixOperations.soutVector(multipleLinearRegression.getWeights());
 		System.out.println("Bias: " + multipleLinearRegression.getBias());
-		double[] yHat = multipleLinearRegression.predict(dataX);
-		for (double yi : yHat)
-			System.out.println("Y^: " + yi);
 		System.out.println("Score: " + multipleLinearRegression.score(dataX, dataY));
 		System.out.println("\n");
     }
