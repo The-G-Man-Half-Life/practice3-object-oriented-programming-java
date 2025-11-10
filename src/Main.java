@@ -1,36 +1,11 @@
-import models.LinearRegression;
-import utils.*;
+import tests.LinearRegressionTest;
 
 public class Main {
 	public static void main(String[] args) {
-		test("..\\data\\StudentExamScores.csv");
-		test("..\\data\\IceCreamSellingData.csv");
-	}
+		LinearRegressionTest test1 = new LinearRegressionTest("..\\data\\StudentExamScores.csv");
+		test1.outputTest();
 
-	// Testing function.
-	public static void test(String dataFilePath) {
-		// First we need to read the values from the CVS given.
-		// We can stablish a new class that is only about this.
-		double[][] data = CVSReader.read(dataFilePath);
-		
-		// With the data already inside a Matrix we must only divide the output, which just so happens to be the last column.
-		int n = data[0].length;
-
-		// Matrix of data.
-		double[][] x = MatrixOperations.splitMatrixHorizontalLeft(data, n - 1);
-
-		// Vector of results
-		double[] y = MatrixOperations.getColumn(data, n - 1);
-
-		// Linear Regresion
-		LinearRegression mlr = new LinearRegression();
-		mlr.fit(x, y);
-
-		System.out.println("\nTest for data in \"" + dataFilePath + "\" (scaled)");
-		System.out.print("Weights:");
-		MatrixOperations.soutVector(mlr.getWeights());
-		System.out.println("Bias: " + mlr.getBias());
-		System.out.println("Score: " + mlr.score(x, y));
-		System.out.println("\n");
+		LinearRegressionTest test2 = new LinearRegressionTest("..\\data\\IceCreamSellingData.csv");
+		test2.outputTest();
 	}
 }
