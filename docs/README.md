@@ -176,21 +176,18 @@ This project is focused on developing multiple linear regression models to predi
 ### Main.java:
   The main file that takes care of executing the tests and the entire program.
 
-### .gitignore  
-  The file that takes care of ignoring class files if were pushed to git unintetionally.
-
 #### Examples of the outputs of the multiple linear regression test:
 
 ```Java
 Multiple linear regression test:
 
 Test for data in "..\data\StudentExamScores.csv" (scaled)
-Weights:        5.0067527724969745
-        1.42209313763438
-        1.5406796290272569
-        2.7700144113385123
-Bias: 33.95499999999999
-Score: -2590.6793944563465
+Weights:        0.7392711028529284
+        0.2099788845164484
+        0.2274887497442752
+        0.40900593694931975
+Bias: 8.325947582256633E-16
+Score: 0.8414239969362044
 ```
 
 #### Examples of the outputs of the simple linear regression test:
@@ -199,9 +196,9 @@ Score: -2590.6793944563465
 Simple linear regression test:
 
 Test for data in "..\data\IceCreamSellingData.csv" (scaled)
-Weights:        -2.126542401250901
-Bias: 15.9053078409119
-Score: -0.057167211738001544
+Weights:        -0.1751842927078433
+Bias: 1.7748982594039712E-16
+Score: 0.03068953641154748
 ```
 
 ## Problems and errors during the development
