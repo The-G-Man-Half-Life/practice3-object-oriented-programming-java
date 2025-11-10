@@ -1,7 +1,5 @@
 import models.LinearRegression;
-import utils.CVSReader;
-import utils.MatrixOperations;
-import utils.StandardScaler;
+import utils.*;
 
 public class Main {
 	public static void main(String[] args) {
@@ -17,26 +15,22 @@ public class Main {
 		
 		// With the data already inside a Matrix we must only divide the output, which just so happens to be the last column.
 		int n = data[0].length;
+
 		// Matrix of data.
 		double[][] x = MatrixOperations.splitMatrixHorizontalLeft(data, n - 1);
 
 		// Vector of results
 		double[] y = MatrixOperations.getColumn(data, n - 1);
 
-		// (Standard Scaling)
-		StandardScaler scaler = new StandardScaler();
-		scaler.fit(x);
-		double[][] xScaled = scaler.transform(x);
-
-		// Linear Regresion (Trained with scaled data)
+		// Linear Regresion
 		LinearRegression mlr = new LinearRegression();
-		mlr.fit(xScaled, y);
+		mlr.fit(x, y);
 
 		System.out.println("\nTest for data in \"" + dataFilePath + "\" (scaled)");
 		System.out.print("Weights:");
 		MatrixOperations.soutVector(mlr.getWeights());
 		System.out.println("Bias: " + mlr.getBias());
-		System.out.println("Score: " + mlr.score(xScaled, y));
+		System.out.println("Score: " + mlr.score(x, y));
 		System.out.println("\n");
 	}
 }
