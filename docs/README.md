@@ -205,303 +205,162 @@ Score: 0.03068953641154748
 
 ### Utils
 - **CVSReader.java**  
-  -  
+  - Understanding how to make the program to be able to gather
+    the data that is in distinct format styles but similar parsing
+    of the data
+  -  Making the functions be able to work together without inconvenients
+  -  Adjusting the logic for saving the information in a proper way
 - **MatrixOperations.java**  
-  - 
+  - Understanding how to manage the data in rows and lists
+  - Understanding how to make all the functions as general as possible
+    for all the possible scenarios
+  - Creating the specialized methods for specific functions like gauss-
+    jordan
+  - Having to change from floats to doubles to reduce the error margin that
+    could happen
+  - Taking into account all the possible scenarios in which the functions
+    can not work properly to predict them and prevent them.
+  - Understanding how to integrate the extra columns to an original column
+  - Keeping the logic simple as can ocurr a lot of confusions with the rows
 
 ### Models
 - **LinearRegression.java**  
-  -
-
+  - Planning how to set up everything properly in the fit as it is the main
+    method that almost all the other ones rely in.
+  - Naming the variables simple but short enough to not oversaturate the method
+    with letters and words.
+  - Diferentiating how big was the impact of the data scaling function inside
+    the project to understand if it was good implemented or not.
+  - With the predict methods was finding how to separate properly the functiona-
+    lities to maintain the clean code bases and also deciding how to diferentiate
+    them.
+  - In score finding a good way to proccess the information that it would receive
+    from the obtained results and the real results.
+  - Where to place the addBiasColumn method as it wasnt necessarily a method from
+    operation matrix strictly but also because it was not so fitting in this file
+    so it was decided to leave it in this file for convenience.
+  - Deciding the kind of access modifiers that the functions would have as although
+    some methods were important we didnt considere them important enough to implement
+    them the getters setters logic which involves more time accessing and processing.
+    
 ### Tests
 - **LinearRegressionTest.java**  
-  -
+  -Finding a way to cohesively joining all the functions and methods created before to
+   execute the program and test if everything was made correctly.
+  -Separating the functionality of the test with the printing of the information to
+   organize properly the model.
+  -making the printing of the information visually appealing due to all the information it
+  contained 
 
 ### Data
 - **IceCreamSellingData.csv**  
-  -
+  -Deciding wheter or not we should copy all the information into a matrix to simplify the
+  process or we should make the logic to convert all the information of both csv to turn
+  them into matrixes so we decided this one to learn more.
 - **StudentExamScores.csv**  
-  
+  -After doing the lineal regression model of this data we found out this one had quite
+  some strange behaviors with the data as the model returned some strange weights and bias
+  so we found out that it hada a quadratic behavior which was the reason behin all that.
 ### Docs
 - **Readme.md**  
-  Contains this readme.md file
-- **VideoLink.txt**  
-  Contains the link to the video.
-
+  -Organizing the document to be easily readable and understood.
+  
 ### Output
 - **predictionsMultiple.txt**  
-  Contains the results after the predictions of the multiple linear regression
-  model implemented with the StudenExamScores.csv data.
+ - There were no inconvenients just placing the outputs to rewatch them if needed.
 - **predictionsSimple.txt**  
-  Contains the results after the predicion of the simple linear regression model
-  implemented with the IceCreamSellingData.csv data.
+  - There were no inconvenients.
 
 ### Main.java:
-  -
-
-### .gitignore  
-  -
+  - Printing the information in a good way.
   
 ### General problems throught the development
 
-   - Installing swish-Prolog and all of the nece-
-     ssary components to make it work because
-     Microsoft defender evited the installation of
-     certain files that were obligatory for the
-     proper function of Prolog.
-   - Understanding how to use Prolog in VSC as
-     Prolog has its own console to execute the
-     queries but we wanted to make it run on VSC's
-     console for proper testing and more
-     compatibility with Github and also due to
-     the extensions that VSC provides.
+   - Installing the jdk and all of the nece-
+     ssary components in VSC to make everything
+     run smoothly.
+   - Understanding how to separate all the project
+     in a clean way to maintain a good workflow
+     and keep everything separated and easily
+     accesable.
    - Coordinating all the proccess through Github.
      Since we divided the work between all members
      coordinating how to use the tool appropiately
      to evite fatal mistakes was really important
      and also to inform the proper structures for
-     the documentation, the commentaries the kind
-     of typing for the code and the folder structure.
+     the documentation, the commentaries and the
+     kind of typing.
    - Time organization and video preparation.
    - Understanding how to use the modules to import
      and export codes between files so in that way the
      code could be more readable and better to maintain
-     along the whole process
-   - Understanding better the recursion as the prolog
-     kind of recursion is quite much different to the
-     one of haskell or an average POO one
-   - Understanding the new types of variables for the
-     facts since prolog includes the basic types but
-     also some new ones as Atoms but with different types
-     of atoms between each other.
-   - Understanding some new methods in Prolog such as
-     setof(), sort(), member() and findall() as these
-     methods had their unique ways of working and were
-     necessary for making the queries.
+     along the whole process.
+   - Implementing the matrixes in java as we didnt
+     have access to libraries which involved studying
+     again linear algebra for this entire process.
+   - How to separate the branch organization as this
+     project involved a lot of of interoperativity
+     so we needed to make the branches share information
+     quicly without losing the separation needed for
+     a clear workflow.
      
 ## Conclusions
 
   - The development of this project taught us the im-
-    portance of learning and adapting to new languages
-    to sort all kind of problems and difficulties
-    specially when this brings a new understanding of
-    different kinds of programming paradigms.
+    portance of separating the requirements properly
+    between all the memebers to agilize the development.
   - It is really important to understand how to sepa
     rate properly all the functionalities and programs
     inside the project to maintain a good cohesion and
     order along the whole development proccess,
-    making it better to read and change if is necessary.
+    so the code can be understood by the others that
+    are working on different things.
   - It is necessary to understand the use of tools
     such as Github and VSC to collaborate with other
     people to bring to life all kind of different projects
-    one could ever have.
-  - Understanding Recursion can be pretty tedious and
-    annoying at first glance but learning it can open
-    a world of possibilities for iteration problems.
-  - Learning how to install new languages can be seen
-    as a challenge, specially prolog and its problem
-    with Microsoft Defender, but is really important
-    to deal with this kind of challenges for the future 
+    one could ever have specially the usage of branches
+    and merging as these can save the project from big
+    mistakes but also can destroy the entire project.
+  - Understanding how to make things from scratch
+    can be extremely useful so once you start implementing
+    libraries and other people's code you know how to
+    deal with certain problems and the functionality
+    behind it.
   - The teamwork was really important in this project
-    as We helped each other and learned tons of things
-    of each other.
-  - Good expression and communication was vital to make a
-    good video.
+    as We needed feedback from each other as the project
+    required from everyone part of the work.
+  - Good expression and communication were vital elements
+    to make a good video.
     
-## tests 
+## tests (Inside the project you can find these inside the output folder)
 
 ```bash
-Output of `amdAfter2021PrintList/0`
---------------------------------------------
-Trademark | Name | Serial number | Year of acquisition
---------------------------------------------
-('HP'|'Omen 16'|'5CDV9D4N'|2023)
---------------------------------------------
-('HP'|'Omen 15'|'5CDU1E5P'|2022)
---------------------------------------------
-('Lenovo'|'LOQ 15 Gen 9'|'LNVW6D4N'|2023)
---------------------------------------------
-('Lenovo'|'IdeaPad Gaming 3'|'LNVU1E5P'|2022)
---------------------------------------------
-('ASUS'|'ROG Zephyrus G16'|'ASY8B2L'|2025)
---------------------------------------------
-('ASUS'|'ROG Flow X13'|'ASZ7C3M'|2024)
---------------------------------------------
-('ASUS'|'TUF Gaming A15'|'AST6D4N'|2023)
---------------------------------------------
-('ASUS'|'ROG Flow Z13'|'ASTAB01'|2025)
---------------------------------------------
-('MSI'|'Crosshair 17 HX'|'MSIU1E5P'|2024)
---------------------------------------------
-('Razer'|'Blade 16 OLED'|'RZRY8B2L'|2025)
---------------------------------------------
-('Razer'|'Blade 14 Ryzen'|'RZRW6D4N'|2023)
---------------------------------------------
-('Dell'|'Alienware m15 R7'|'DLT3F6Q'|2023)
---------------------------------------------
-('Razer'|'Tomahawk ATX'|'RZRDC02'|2024)
---------------------------------------------
+Multiple linear regression test:
 
-Output of `amountOfCPASUSPrintList/0`
---------------------------------------------
-This is the amount of ASUS computing platforms: 7
---------------------------------------------
-These are all of the  ASUS computing platforms: 
---------------------------------------------
-Name | Serial number | Year of acquisition | Type of Computing platform
---------------------------------------------
-('ROG Strix Scar 18'|'ASX9A1Q'|2025|laptop)
---------------------------------------------
-('ROG Zephyrus G16'|'ASY8B2L'|2025|laptop)
---------------------------------------------
-('ROG Flow X13'|'ASZ7C3M'|2024|laptop)
---------------------------------------------
-('TUF Gaming A15'|'AST6D4N'|2023|laptop)
---------------------------------------------
-('ROG Strix G15'|'ASU1E5P'|2022|laptop)
---------------------------------------------
-('ROG Flow Z13'|'ASTAB01'|2025|tablet)
---------------------------------------------
-('ROG Flow Z13'|'ASTAB02'|2023|tablet)
---------------------------------------------
+Test for data in "..\data\StudentExamScores.csv" (scaled)
+Weights:        5.0067527724969745
+        1.42209313763438
+        1.5406796290272569
+        2.7700144113385123
+Bias: 33.95499999999999
+Score: -2590.6793944563465
 
-Output of `cpHDBetweenPrintList/0`
---------------------------------------------
-Trademark | Name | Serial number | Hard disk capacity in GB
---------------------------------------------
-('Lenovo'|'Legion Tab Gen 3'|'LNTG8A1X'|256)
---------------------------------------------
 
-Output of `laptopsRamHDPrintList/0`
---------------------------------------------
-This is the amount of Computing Platforms with
-more than 4 GB of Ram and less than 512 GB of 
-Hard Disk: 1
---------------------------------------------
-These are all of the found computing platforms: 
---------------------------------------------
-Name | Serial number | Ram capacity in GB | Hard disk capacity in GB
---------------------------------------------
-('Legion Tab Gen 3'|'LNTG8A1X'|12|256)
---------------------------------------------
+Simple linear regression test:
 
-Output of `tablet2PlusGBRamPrintList/0`
---------------------------------------------
-Trademark | Name | Serial number | Ram capacity in GB
---------------------------------------------
-('Lenovo'|'Legion Tab Gen 3'|'LNTG8A1X'|12)
---------------------------------------------
-('ASUS'|'ROG Flow Z13'|'ASTAB01'|128)
---------------------------------------------
-('ASUS'|'ROG Flow Z13'|'ASTAB02'|32)
---------------------------------------------
-('RedMagic'|'Astra Gaming Tablet'|'RDMTAB01'|24)
---------------------------------------------
-('RedMagic'|'NOVA Gaming Tablet'|'RDMTAB02'|16)
---------------------------------------------
-
-Output of `bestComputingPlatformPrint/0`
---------------------------------------------
-The most powerful computing platform after 2023 is the: 
-Legion 9i Gen 10
-TradeMark: Lenovo
-Serial number: LNVX9A1Q
-Ram Capacity in GB: 192
-Amount of CPU Cores: 24
-Hard Disk Capacity in GB: 8192
-Type of Computing Platform: laptop
-VRam Capacity in GB: 24
-Total punctuation: 209.184
---------------------------------------------
-
-Output of `allBrandsMostCommonPrintList/0`
---------------------------------------------
-Trademark | (CPU manufacturer, GPU manufacturer) | Total amount of counts 
---------------------------------------------
-('ASUS',(amd,nvidia),3)
---------------------------------------------
-('Dell',(intel,nvidia),6)
---------------------------------------------
-('HP',(intel,nvidia),6)
---------------------------------------------
-('Lenovo',(intel,nvidia),4)
---------------------------------------------
-('MSI',(intel,nvidia),9)
---------------------------------------------
-('Razer',(intel,nvidia),3)
---------------------------------------------
-('RedMagic',(qualcomm,qualcomm),2)
---------------------------------------------
-
-Output of `ramVRamMostCommonComboPrint/0`
---------------------------------------------
-The most common combination of Ram and VRam 
-capacity in GB is respectively: 32 and 8 with: 7 apparitions between all the 
-computing platforms.
---------------------------------------------
-
-Output of `worstComputingPlatformPrint/0`
---------------------------------------------
-The least powerful computing platform before 2023 is the: 
-Blade Stealth 13
-TradeMark: Razer
-Serial number: RZRU1E5P
-Ram Capacity in GB: 16
-Amount of CPU Cores: 4
-Hard Disk Capacity in GB: 512
-Type of Computing Platform: laptop
-VRam Capacity in GB: 0
-Total punctuation: 19.872
---------------------------------------------
-
-Output of `print_All(bogota, medellin)`
---------------------------------------------
-bogota (avion, 8->9, 100.0 USD)--> medellin
----
-Costo Total: 100
-Tiempo: 1h
---------------------------------------------
-bogota (bus, 6->16, 40.0 USD)--> medellin
----
-Costo Total: 40
-Tiempo: 10h
---------------------------------------------
-
-Output of `print_All(bogota, medellin, 6, 12)`
---------------------------------------------
-bogota (avion, 8->9, 100.0 USD)--> medellin
----
-Costo Total: 100
-Tiempo: 1h
---------------------------------------------
-
-Output of `print_Cheapest(bogota, cartagena)`
---------------------------------------------
-bogota (bus, 6->16, 40.0 USD)--> medellin
-medellin (bus, 7->19, 42.0 USD)--> cartagena
----
-Costo Total: 82
-Tiempo: 22h
---------------------------------------------
-
-Output of `print_Fastest(bogota, cartagena)`
---------------------------------------------
-bogota (avion, 8->9, 100.0 USD)--> medellin
-medellin (bus, 7->19, 42.0 USD)--> cartagena
----
-Costo Total: 142
-Tiempo: 13h
---------------------------------------------
+Test for data in "..\data\IceCreamSellingData.csv" (scaled)
+Weights:        -2.126542401250901
+Bias: 15.9053078409119
+Score: -0.057167211738001544
 ```
 
 ## Prerequisites to execute this repository
-- SWI‑Prolog (recommended >= 8.0). https://www.swi-prolog.org/Download.html
-- Visual Studio Code. https://code.visualstudio.com/download
-- Have stablished and set up everything for Prolog
+- Install the Java Development Kit(JDK) from --> https://www.java.com/en/download/manual.jsp
+- Visual Studio Code. https://code.visualstudio.com/download (or your prefered IDE java)
+- Have installed git from --> https://git-scm.com/install/
 
 ## Where to Use
-- It can be used in the Prolog own terminal or preferably use the
-powershell or VSC code terminal for better watch of code and execution.
+- It can be used in VSC, netBeans, InteliJ or your IDE  of trust. 
 
 ## How to Use
 - Watch the bash template to see how to execute every query.
@@ -514,43 +373,9 @@ powershell or VSC code terminal for better watch of code and execution.
 # 2) enter challenge 1 database queries
   cd challenge1_database
   
-  # To use both queries and complex queries
-  swipl main.pl
-  
-  # To execute the queries
-  ?- amdAfter2021PrintList.
-  ?- amountOfCPASUSPrintList.
-  ?- cpHDBetweenPrintList.
-  ?- laptopsRamHDPrintList.
-  ?- tablet2PlusGBRamPrintList.
-  
-  # To execute the complex queries
-  ?- bestComputingPlatformPrint.
-  ?- allBrandsMostCommonPrintList.
-  ?- ramVRamMostCommonComboPrint.
-  ?- worstComputingPlatformPrint.
-  
-  # To go back to the root :
-  ctrl + c
-  press e to exit
-  cd ..
-
-# 3) Enter challenge 2 Travel Planning System (TPS)
-  cd challenge2_TPS
-
-  # Load the main module
-  swipl main.pl
-
-  # Run example queries:
-  ?- print_All(bogota, medellin).
-  ?- print_All(bogota, medellin, 6, 7).
-  ?- print_Cheapest(bogota, santa_marta).
-  ?- print_Fastest(bogota, santa_marta).
-
-  # To exit Prolog:
-  ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
