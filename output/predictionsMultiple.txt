@@ -1,0 +1,13 @@
+These are the results of the multiple linear 
+regression test made with the data obtained 
+from StudentExamScores.scv:
+
+Weights:
+5.0067527724969745
+1.42209313763438
+1.5406796290272569
+2.7700144113385123
+
+Bias: 33.95499999999999
+
+Score: -2590.6793944563465
