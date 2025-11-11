@@ -21,7 +21,6 @@ This project is focused on developing multiple linear regression models to predi
     - `CVSReader.java`
     - `MatrixOperations.java`
   - `Main.java`
-- `.gitignore`
 
 ## Program Functionalities
 
@@ -381,6 +380,7 @@ where are the console outputs
   
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
