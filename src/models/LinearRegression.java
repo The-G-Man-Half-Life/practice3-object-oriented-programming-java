@@ -15,11 +15,8 @@ public class LinearRegression {
 	public void fit(double[][] x, double[] y) {
 		// With the Normal Equation W = (X^t X)^-1 X^t y
 		try {
-			// First we must scale the data.
-			double[][] xScaled = dataScaling(x);
-
 			// To get the BIAS we add a column of 1 and procede with the rest.
-			double[][] xBias = addBiasColumn(xScaled);
+			double[][] xBias = addBiasColumn(x);
 
 			// Get the transposed of X (X^t)
 			double[][] xT = MatrixOperations.transpose(xBias);

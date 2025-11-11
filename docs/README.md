@@ -14,17 +14,14 @@ This project is focused on developing multiple linear regression models to predi
   - `predictionsSimple.txt`
 - `src`
   - `models`
-    - `DataScaler.java`
-    - `Dataset.java`
     - `LinearRegression.java`
-    - `Metrics.java`
   - `tests`
-    - `MultipleRegressionTest.java`
-    - `SimpleRegressionTest.java`
+    - `LinearRegressionTest.java`
   - `utils`
     - `CVSReader.java`
     - `MatrixOperations.java`
   - `Main.java`
+- `.gitignore`
 
 ## Program Functionalities
 
@@ -45,7 +42,7 @@ This project is focused on developing multiple linear regression models to predi
 
 - **MatrixOperations.java**  
   It takes care of containing all the required matrix functions to develop
-  the multiple linear regression 
+  the multiple linear regression model such as:
   - *multiplyMatrix*  
   Takes care of verifying that the matrixes about to be multiplied are
   able to do so, and after the verification if they are incompatible the
@@ -70,478 +67,325 @@ This project is focused on developing multiple linear regression models to predi
   - *splitMatrixHorizontalRight*  
   Takes care of dividing the matrix into two of the same size but only
   returns the part in the right.
-  - *getColumn*  
-  Takes care of getting the column of matrix and then returns it as a vector.
-  - *subtractVectors*
+  - *splitMatrixVerticalTop*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the top.
+  - *splitMatrixVerticalBottom*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the bottom.
+  - *toColumnMatrix*  
+  Takes care of turning rows into columns.
+  - *gaussJordan*  
+  It replicates the gauss jordan method to obtain the reduced stepped matrix.
+  - *splitMatrixVerticalTop*  
+  Takes care of dividing the matrix into two of the same size but only
+  returns the part in the top.
+  - *subtractVectors*  
   Takes care of subtracting one vector with another one and finally it returns
   the subtracted vector.
-  - *multiplyVector*
-  Take care of multiplying a vector with a scalar from the Real numbers and then
+  - *multiplyVector*  
+  Takes care of multiplying a vector with a scalar from the Real numbers and then
   returns the multiplied vector.
-  - *divideVector*
-  Take care of dividing a vector by a scalar from the Real numbers and then returns
+  - *divideVector*  
+  Takes care of dividing a vector by a scalar from the Real numbers and then returns
   the simplified vector.
+  - *swappingRow*  
+  Swapes two rows of one matrix given.
+  - *getIdentityMatrix*  
+  Returns a square identity matrix according to the requested size.
+  - *soutMatrix*  
+  Method implemented to print the matrixes in a visually understandable way.
+  - *soutVector*  
+  Prints the vector of a given array in a a visually understandable way.
 
-#### queries
+### Models
 
-- **amdAfter2021.pl**  
-  Takes care of finding all the computing platforms with AMD CPU after 2021
-  from facts.pl.This is achieved by only choosing those computing platforms
-  that go according to the conditions given then all of them are gathered
-  in a list and finally printed all this using recursion.
+- **LinearRegression.java**  
+  This is the main model that takes care of handling the attributes behind the linear
+  regression model such as the weight and the bias needed for the model but also
+  the means and the stds required for the data scaling process. Nonetheless it also
+  contains the methods to make the linear regression model work such as:
+  - *fit*  
+  Takes care of training the model by implementing the normal equation but for that
+  it casts some other methods from the MatrixOperations.java file the normal equation
+  process occurs in this way: It scales the data, then to obtain the bias ,it transposes
+  the matrix, multiplies the transposed matrix with the original one, obtains the inverse
+  matrix obtained from the last process, then multiplies this matrix with the data that
+  is wished to predict the data from and finally it extracts the bias  and the weight after
+  that this process occurs. This proccess occurs using these next  methods respectively:
+  dataScaling, addBiasColumn, MatrixOperations.transpose, MatrixOperations.multiplyMatrix,
+  MatrixOperations.inverse, MatrixOperations.multiplyMatrix, MatrixOperations.multiplyMatrix
+  and lastly getColumn. This method does this entire process in a try catch method to notify
+  possible errors.
+  - *dataScaling*  
+  By using a process known as standardization it calculates the means and standard
+  deviations(stds) so in that way it can scale the data to some more reasonable values that
+  the model can work with. Eviting some big scale weight problems due to the inmensity of
+  some values.
+  - *scaleRow*  
+  Scales a single row by using the means and the standard deviation obtained from the training.
+  It remains there if needed for scaling the project.
+  - *predict(double[] x)*  
+  This metod takes care of predicting the results of the given data by using the weight
+  and the bias obtained previously.
+  - *predict(double[][] x)*  
+  This method takes care of returning the predicted values by using the method before and
+  it stores them in a list of doubles.
+  - *score*  
+  Calculates how well the model fits the data using the R^2 score formula:
+  R^2 = 1 - (sum of squared errors / total sum of squares).
+  - *addBiasColumn*  
+  Takes care of adding a column full of ones that can be used with the original matrix so
+  after the normal equation is done it can return the bias.
+  - *mean*  
+  Takes care of calculating the average of the true values of Y.
 
-- **amountOfCPASUS.pl**  
-  Takes care of counting the amount of computing platforms from ASUS and also
-  displaying all of the ASUS computing platforms from facts.pl. This is
-  achieved by only choosing those computing platforms that go according
-  to the conditions given then all of them are gathered in a list and then
-  counted using a recursive function and with the list of computing platforms
-  and the count gathered all these informations are printed.
+### Tests
 
-- **cpHDBetween.pl**  
-  Takes care of finding all the computing platforms with hard disk capacities
-  between 32 and 512 GB from facts.pl. This is achieved by only choosing those
-  computing platforms that go according to the conditions given then all of
-  them are gathered in a list and and with the list of computing platforms
-  all these informations are printed.
+- **LinearRegressionTest.java**  
+  This is the model that takes care of gathering all the methods and required data to
+  execute the linear regression model
+  - *LinearRegressionTest*  
+  Takes care of gathering everything from the other models such as values, methods,
+  files etc... So output test can print the results.
+  - *outputTest*
+  This method takes care of printing all the results obtained from the test.
 
-- **laptopsRamHD.pl**  
-  Takes care of finding all the computing platforms where the type of computing
-  platform is a laptop, it has more than 4 GB of RAM and less than 512 GB of
-  hard disk from facts.pl.This is achieved by only choosing those computing
-  platforms that go according to the conditions given then all of them are
-  gathered in a list and and with the list of computing platforms all these
-  informations are printed.
+## Program Extras
 
-- **tablet2PlusGBRam.pl**  
-  Takes care of finding all the tablets with more than 2 GB of RAM from facts.pl.
-  This is achieved by only choosing those computing platforms that go according
-  to the conditions given then all of them are gathered in a list and and with
-  the list of computing platforms all these informations are printed.
+### Data
+- **IceCreamSellingData.csv**  
+  Contains all the ice cream selling data in a scv format.
+- **StudentExamScores.csv**  
+  Contains all the student exam scores data in a scv format.
+  
+### Docs
+- **Readme.md**  
+  Contains this readme.md file
+- **VideoLink.txt**  
+  Contains the link to the video.
 
-### 2) challenge2_TPS
+### Output
+- **predictionsMultiple.txt**  
+  Contains the results after the predictions of the multiple linear regression
+  model implemented with the StudenExamScores.csv data.
+- **predictionsSimple.txt**  
+  Contains the results after the predicion of the simple linear regression model
+  implemented with the IceCreamSellingData.csv data.
 
-This module represents a **Travel Planning System (TPS)** implemented in Prolog.
-It calculates all possible travel routes between two cities, including direct trips and multi-step routes, while showing total cost and duration. It also includes filters to find routes within specific time ranges or by cheapest/fastest criteria.
+### Main.java:
+  The main file that takes care of executing the tests and the entire program.
 
-#### Files and their roles
+#### Examples of the outputs of the multiple linear regression test:
 
-- **route_facts.pl**  
-  Contains the knowledge base with all available travel routes, including origin, destination, transport type, departure time, arrival time, cost, and availability.
+```Java
+Multiple linear regression test:
 
-- **routes_logic.pl**  
-  Defines the recursive logic that finds both direct and multi-stop routes.  
-  It uses a “Visited” list to prevent loops and sums up the total cost and travel time.
+Test for data in "..\data\StudentExamScores.csv" (scaled)
+Weights:        0.7392711028529284
+        0.2099788845164484
+        0.2274887497442752
+        0.40900593694931975
+Bias: 8.325947582256633E-16
+Score: 0.8414239969362044
+```
 
-- **filters_Optimals.pl**  
-  Implements filters to only include routes within specific departure time windows and functions to determine the cheapest or fastest available route.
+#### Examples of the outputs of the simple linear regression test:
 
-- **outputs.pl**  
-  Handles all user-facing outputs, such as formatted printing of route segments, total costs, and total travel times.
+```Java
+Simple linear regression test:
 
-- **main.pl**  
-  The main module that ties all others together. It provides easy-to-use commands for users to query and print all routes, or find the cheapest or fastest options.
-
-#### Example Queries and Outputs for challenge2_TPS
-
-```prolog
-  % Load main module
-  ?- [main].
-
-  % List all available routes between two cities
-  ?- print_All(bogota, medellin).
-
-  % List routes within a departure time range (6 to 12)
-  ?- print_All(bogota, medellin, 6, 12).
-
-  % Find the cheapest available route between two cities
-  ?- print_Cheapest(bogota, cartagena).
-
-  % Find the fastest available route between two cities
-  ?- print_Fastest(bogota, cartagena).
+Test for data in "..\data\IceCreamSellingData.csv" (scaled)
+Weights:        -0.1751842927078433
+Bias: 1.7748982594039712E-16
+Score: 0.03068953641154748
 ```
 
 ## Problems and errors during the development
 
-### complexQueries
+### Utils
+- **CVSReader.java**  
+  - Understanding how to make the program to be able to gather
+    the data that is in distinct format styles but similar parsing
+    of the data
+  -  Making the functions be able to work together without inconvenients
+  -  Adjusting the logic for saving the information in a proper way
+- **MatrixOperations.java**  
+  - Understanding how to manage the data in rows and lists
+  - Understanding how to make all the functions as general as possible
+    for all the possible scenarios
+  - Creating the specialized methods for specific functions like gauss-
+    jordan
+  - Having to change from floats to doubles to reduce the error margin that
+    could happen
+  - Taking into account all the possible scenarios in which the functions
+    can not work properly to predict them and prevent them.
+  - Understanding how to integrate the extra columns to an original column
+  - Keeping the logic simple as can ocurr a lot of confusions with the rows
 
-**bestCPAfter2023.pl**  
-- Determining how to properly measure which devices are better than the
-  other ones.
-- Understanding what score to give to each characteristic based on its
-  importance for the device.
-- Making the logic behind the recursive method to choose the computing
-  platform with the highest punctuation.
-- Joining all of the queries to make the main query work.
-- Deciding how to display all of the gathered information so it can be
-  visually attractive
+### Models
+- **LinearRegression.java**  
+  - Planning how to set up everything properly in the fit as it is the main
+    method that almost all the other ones rely in.
+  - Naming the variables simple but short enough to not oversaturate the method
+    with letters and words.
+  - Diferentiating how big was the impact of the data scaling function inside
+    the project to understand if it was good implemented or not.
+  - With the predict methods was finding how to separate properly the functiona-
+    lities to maintain the clean code bases and also deciding how to diferentiate
+    them.
+  - In score finding a good way to proccess the information that it would receive
+    from the obtained results and the real results.
+  - Where to place the addBiasColumn method as it wasnt necessarily a method from
+    operation matrix strictly but also because it was not so fitting in this file
+    so it was decided to leave it in this file for convenience.
+  - Deciding the kind of access modifiers that the functions would have as although
+    some methods were important we didnt considere them important enough to implement
+    them the getters setters logic which involves more time accessing and processing.
+    
+### Tests
+- **LinearRegressionTest.java**  
+  -Finding a way to cohesively joining all the functions and methods created before to
+   execute the program and test if everything was made correctly.
+  -Separating the functionality of the test with the printing of the information to
+   organize properly the model.
+  -making the printing of the information visually appealing due to all the information it
+  contained 
 
-**mostCommCPUGPUManComb.pl**  
-- Finding out how to make the logic for finding the most common CPU
-  manufacturer and GPU manufacturer for each trademark as this logic
-  was kind of complex having in mind the usage of recursion.
-- Designing the countOcurrences method so it could return the amount
-  of counts for each CPU/GPU manufacturer combination and also be the
-  backbone of the main query.
-- Finding out how to join all of the queries in the main one to make
-  everything work.
- **mostCommRamVRamInGBComb.pl**  
-- Trying to make all of the functions generally usable not matter the
-  situation so these functions could be re used or reimplemented for
-  all the future queries.
-- Figuring out how to print all the information in a visually attractive
-  form as this query was pretty distinct compared to the other queries
-  made before in the way of printing the information. 
+### Data
+- **IceCreamSellingData.csv**  
+  -Deciding wheter or not we should copy all the information into a matrix to simplify the
+  process or we should make the logic to convert all the information of both csv to turn
+  them into matrixes so we decided this one to learn more.
+- **StudentExamScores.csv**  
+  -After doing the lineal regression model of this data we found out this one had quite
+  some strange behaviors with the data as the model returned some strange weights and bias
+  so we found out that it hada a quadratic behavior which was the reason behin all that.
+### Docs
+- **Readme.md**  
+  -Organizing the document to be easily readable and understood.
+  
+### Output
+- **predictionsMultiple.txt**  
+ - There were no inconvenients just placing the outputs to rewatch them if needed.
+- **predictionsSimple.txt**  
+  - There were no inconvenients.
 
-- **worstCPBefore2023.pl**  
-  -Finding out how to re implement some old queries to make this new query
-   in the most optimal way possible.
-  -Understanding how to stablish dates and times properly to obtain the
-   correct facts and data. 
-
-### queries
-
-**amdAfter2021.pl**  
-  - Discovering the appropiate ways to print information implementing
-    recursion.
-
-**amountOfCPASUS.pl**  
-  - Naming the file. as the Brand is named ASUS and not Asus but it
-    could be misunderstood so it was decided to leave it in its normal
-    format as it is generally understood as the trademark.
-  - Making the function to count the amount of items that were gathered
-    during the proccess as this one had a different proccess of recursion.
-
-**cpHDBetween.pl**  
-  - Naming the file briefly and understandable as the goal of this
-    file is quite large to explain in a short file name format.
-
-**laptopsRamHD.pl**  
-  - Making the most visually appealing the header of the print list function
-    becase the original names were too large for each category so it was
-    necessary to find some short names.
-
-- **tablet2PlusGBRam.pl**  
-  - Having to change the knowledge database as there were not enough tablets
-    to make this query visibly good enough.
-
-### challenge2_TPS
-
-- Debugging variable scope issues in `findall/3` and ensuring that cost and time accumulated correctly through recursion.
-- Building filtering functions that use true/false return logic (instead of cuts) to allow declarative filtering by departure time.
-- Creating formatted outputs using `format/2` for readability in the terminal.
-- Handling syntax errors and directory navigation issues when running from the SWI-Prolog console inside a virtual machine.
-
-      
+### Main.java:
+  - Printing the information in a good way.
+  
 ### General problems throught the development
 
-   - Installing swish-Prolog and all of the nece-
-     ssary components to make it work because
-     Microsoft defender evited the installation of
-     certain files that were obligatory for the
-     proper function of Prolog.
-   - Understanding how to use Prolog in VSC as
-     Prolog has its own console to execute the
-     queries but we wanted to make it run on VSC's
-     console for proper testing and more
-     compatibility with Github and also due to
-     the extensions that VSC provides.
+   - Installing the jdk and all of the nece-
+     ssary components in VSC to make everything
+     run smoothly.
+   - Understanding how to separate all the project
+     in a clean way to maintain a good workflow
+     and keep everything separated and easily
+     accesable.
    - Coordinating all the proccess through Github.
      Since we divided the work between all members
      coordinating how to use the tool appropiately
      to evite fatal mistakes was really important
      and also to inform the proper structures for
-     the documentation, the commentaries the kind
-     of typing for the code and the folder structure.
+     the documentation, the commentaries and the
+     kind of typing.
    - Time organization and video preparation.
    - Understanding how to use the modules to import
      and export codes between files so in that way the
      code could be more readable and better to maintain
-     along the whole process
-   - Understanding better the recursion as the prolog
-     kind of recursion is quite much different to the
-     one of haskell or an average POO one
-   - Understanding the new types of variables for the
-     facts since prolog includes the basic types but
-     also some new ones as Atoms but with different types
-     of atoms between each other.
-   - Understanding some new methods in Prolog such as
-     setof(), sort(), member() and findall() as these
-     methods had their unique ways of working and were
-     necessary for making the queries.
+     along the whole process.
+   - Implementing the matrixes in java as we didnt
+     have access to libraries which involved studying
+     again linear algebra for this entire process.
+   - How to separate the branch organization as this
+     project involved a lot of of interoperativity
+     so we needed to make the branches share information
+     quicly without losing the separation needed for
+     a clear workflow.
      
 ## Conclusions
 
   - The development of this project taught us the im-
-    portance of learning and adapting to new languages
-    to sort all kind of problems and difficulties
-    specially when this brings a new understanding of
-    different kinds of programming paradigms.
+    portance of separating the requirements properly
+    between all the memebers to agilize the development.
   - It is really important to understand how to sepa
     rate properly all the functionalities and programs
     inside the project to maintain a good cohesion and
     order along the whole development proccess,
-    making it better to read and change if is necessary.
+    so the code can be understood by the others that
+    are working on different things.
   - It is necessary to understand the use of tools
     such as Github and VSC to collaborate with other
     people to bring to life all kind of different projects
-    one could ever have.
-  - Understanding Recursion can be pretty tedious and
-    annoying at first glance but learning it can open
-    a world of possibilities for iteration problems.
-  - Learning how to install new languages can be seen
-    as a challenge, specially prolog and its problem
-    with Microsoft Defender, but is really important
-    to deal with this kind of challenges for the future 
+    one could ever have specially the usage of branches
+    and merging as these can save the project from big
+    mistakes but also can destroy the entire project.
+  - Understanding how to make things from scratch
+    can be extremely useful so once you start implementing
+    libraries and other people's code you know how to
+    deal with certain problems and the functionality
+    behind it.
   - The teamwork was really important in this project
-    as We helped each other and learned tons of things
-    of each other.
-  - Good expression and communication was vital to make a
-    good video.
+    as We needed feedback from each other as the project
+    required from everyone part of the work.
+  - Good expression and communication were vital elements
+    to make a good video.
     
-## tests 
+## tests (Inside the project you can find these inside the output folder)
 
 ```bash
-Output of `amdAfter2021PrintList/0`
---------------------------------------------
-Trademark | Name | Serial number | Year of acquisition
---------------------------------------------
-('HP'|'Omen 16'|'5CDV9D4N'|2023)
---------------------------------------------
-('HP'|'Omen 15'|'5CDU1E5P'|2022)
---------------------------------------------
-('Lenovo'|'LOQ 15 Gen 9'|'LNVW6D4N'|2023)
---------------------------------------------
-('Lenovo'|'IdeaPad Gaming 3'|'LNVU1E5P'|2022)
---------------------------------------------
-('ASUS'|'ROG Zephyrus G16'|'ASY8B2L'|2025)
---------------------------------------------
-('ASUS'|'ROG Flow X13'|'ASZ7C3M'|2024)
---------------------------------------------
-('ASUS'|'TUF Gaming A15'|'AST6D4N'|2023)
---------------------------------------------
-('ASUS'|'ROG Flow Z13'|'ASTAB01'|2025)
---------------------------------------------
-('MSI'|'Crosshair 17 HX'|'MSIU1E5P'|2024)
---------------------------------------------
-('Razer'|'Blade 16 OLED'|'RZRY8B2L'|2025)
---------------------------------------------
-('Razer'|'Blade 14 Ryzen'|'RZRW6D4N'|2023)
---------------------------------------------
-('Dell'|'Alienware m15 R7'|'DLT3F6Q'|2023)
---------------------------------------------
-('Razer'|'Tomahawk ATX'|'RZRDC02'|2024)
---------------------------------------------
+Multiple linear regression test:
 
-Output of `amountOfCPASUSPrintList/0`
---------------------------------------------
-This is the amount of ASUS computing platforms: 7
---------------------------------------------
-These are all of the  ASUS computing platforms: 
---------------------------------------------
-Name | Serial number | Year of acquisition | Type of Computing platform
---------------------------------------------
-('ROG Strix Scar 18'|'ASX9A1Q'|2025|laptop)
---------------------------------------------
-('ROG Zephyrus G16'|'ASY8B2L'|2025|laptop)
---------------------------------------------
-('ROG Flow X13'|'ASZ7C3M'|2024|laptop)
---------------------------------------------
-('TUF Gaming A15'|'AST6D4N'|2023|laptop)
---------------------------------------------
-('ROG Strix G15'|'ASU1E5P'|2022|laptop)
---------------------------------------------
-('ROG Flow Z13'|'ASTAB01'|2025|tablet)
---------------------------------------------
-('ROG Flow Z13'|'ASTAB02'|2023|tablet)
---------------------------------------------
+Test for data in "..\data\StudentExamScores.csv" (scaled)
+Weights:        5.0067527724969745
+        1.42209313763438
+        1.5406796290272569
+        2.7700144113385123
+Bias: 33.95499999999999
+Score: -2590.6793944563465
 
-Output of `cpHDBetweenPrintList/0`
---------------------------------------------
-Trademark | Name | Serial number | Hard disk capacity in GB
---------------------------------------------
-('Lenovo'|'Legion Tab Gen 3'|'LNTG8A1X'|256)
---------------------------------------------
 
-Output of `laptopsRamHDPrintList/0`
---------------------------------------------
-This is the amount of Computing Platforms with
-more than 4 GB of Ram and less than 512 GB of 
-Hard Disk: 1
---------------------------------------------
-These are all of the found computing platforms: 
---------------------------------------------
-Name | Serial number | Ram capacity in GB | Hard disk capacity in GB
---------------------------------------------
-('Legion Tab Gen 3'|'LNTG8A1X'|12|256)
---------------------------------------------
+Simple linear regression test:
 
-Output of `tablet2PlusGBRamPrintList/0`
---------------------------------------------
-Trademark | Name | Serial number | Ram capacity in GB
---------------------------------------------
-('Lenovo'|'Legion Tab Gen 3'|'LNTG8A1X'|12)
---------------------------------------------
-('ASUS'|'ROG Flow Z13'|'ASTAB01'|128)
---------------------------------------------
-('ASUS'|'ROG Flow Z13'|'ASTAB02'|32)
---------------------------------------------
-('RedMagic'|'Astra Gaming Tablet'|'RDMTAB01'|24)
---------------------------------------------
-('RedMagic'|'NOVA Gaming Tablet'|'RDMTAB02'|16)
---------------------------------------------
-
-Output of `bestComputingPlatformPrint/0`
---------------------------------------------
-The most powerful computing platform after 2023 is the: 
-Legion 9i Gen 10
-TradeMark: Lenovo
-Serial number: LNVX9A1Q
-Ram Capacity in GB: 192
-Amount of CPU Cores: 24
-Hard Disk Capacity in GB: 8192
-Type of Computing Platform: laptop
-VRam Capacity in GB: 24
-Total punctuation: 209.184
---------------------------------------------
-
-Output of `allBrandsMostCommonPrintList/0`
---------------------------------------------
-Trademark | (CPU manufacturer, GPU manufacturer) | Total amount of counts 
---------------------------------------------
-('ASUS',(amd,nvidia),3)
---------------------------------------------
-('Dell',(intel,nvidia),6)
---------------------------------------------
-('HP',(intel,nvidia),6)
---------------------------------------------
-('Lenovo',(intel,nvidia),4)
---------------------------------------------
-('MSI',(intel,nvidia),9)
---------------------------------------------
-('Razer',(intel,nvidia),3)
---------------------------------------------
-('RedMagic',(qualcomm,qualcomm),2)
---------------------------------------------
-
-Output of `ramVRamMostCommonComboPrint/0`
---------------------------------------------
-The most common combination of Ram and VRam 
-capacity in GB is respectively: 32 and 8 with: 7 apparitions between all the 
-computing platforms.
---------------------------------------------
-
-Output of `worstComputingPlatformPrint/0`
---------------------------------------------
-The least powerful computing platform before 2023 is the: 
-Blade Stealth 13
-TradeMark: Razer
-Serial number: RZRU1E5P
-Ram Capacity in GB: 16
-Amount of CPU Cores: 4
-Hard Disk Capacity in GB: 512
-Type of Computing Platform: laptop
-VRam Capacity in GB: 0
-Total punctuation: 19.872
---------------------------------------------
-
-Output of `print_All(bogota, medellin)`
---------------------------------------------
-bogota (avion, 8->9, 100.0 USD)--> medellin
----
-Costo Total: 100
-Tiempo: 1h
---------------------------------------------
-bogota (bus, 6->16, 40.0 USD)--> medellin
----
-Costo Total: 40
-Tiempo: 10h
---------------------------------------------
-
-Output of `print_All(bogota, medellin, 6, 12)`
---------------------------------------------
-bogota (avion, 8->9, 100.0 USD)--> medellin
----
-Costo Total: 100
-Tiempo: 1h
---------------------------------------------
-
-Output of `print_Cheapest(bogota, cartagena)`
---------------------------------------------
-bogota (bus, 6->16, 40.0 USD)--> medellin
-medellin (bus, 7->19, 42.0 USD)--> cartagena
----
-Costo Total: 82
-Tiempo: 22h
---------------------------------------------
-
-Output of `print_Fastest(bogota, cartagena)`
---------------------------------------------
-bogota (avion, 8->9, 100.0 USD)--> medellin
-medellin (bus, 7->19, 42.0 USD)--> cartagena
----
-Costo Total: 142
-Tiempo: 13h
---------------------------------------------
+Test for data in "..\data\IceCreamSellingData.csv" (scaled)
+Weights:        -2.126542401250901
+Bias: 15.9053078409119
+Score: -0.057167211738001544
 ```
 
 ## Prerequisites to execute this repository
-- SWI‑Prolog (recommended >= 8.0). https://www.swi-prolog.org/Download.html
-- Visual Studio Code. https://code.visualstudio.com/download
-- Have stablished and set up everything for Prolog
+- Install the Java Development Kit(JDK) from --> https://www.java.com/en/download/manual.jsp
+- Visual Studio Code. https://code.visualstudio.com/download (or your prefered IDE java)
+- Have installed git from --> https://git-scm.com/install/
 
 ## Where to Use
-- It can be used in the Prolog own terminal or preferably use the
-powershell or VSC code terminal for better watch of code and execution.
+- It can be used in VSC, netBeans, InteliJ or your IDE  of trust. 
 
 ## How to Use
 - Watch the bash template to see how to execute every query.
 
 ```bash
 # 1) Clone and enter the repo
-  git clone The-G-Man-Half-Life/practice2-logical-programming-prolog
-  cd practice2-logical-programming-prolog
+  git clone https://github.com/The-G-Man-Half-Life/practice3-object-oriented-programming-java.git
+  cd practice3-object-oriented-programming-java
 
-# 2) enter challenge 1 database queries
-  cd challenge1_database
+# 2) access to the src folder where the main file resides
+  cd src
+
+# 3) run the program
+  java Main.java
+
+// if wished to review the results in a more comprehensive way pls look at the ooutput folder
+where are the console outputs
   
-  # To use both queries and complex queries
-  swipl main.pl
-  
-  # To execute the queries
-  ?- amdAfter2021PrintList.
-  ?- amountOfCPASUSPrintList.
-  ?- cpHDBetweenPrintList.
-  ?- laptopsRamHDPrintList.
-  ?- tablet2PlusGBRamPrintList.
-  
-  # To execute the complex queries
-  ?- bestComputingPlatformPrint.
-  ?- allBrandsMostCommonPrintList.
-  ?- ramVRamMostCommonComboPrint.
-  ?- worstComputingPlatformPrint.
-  
-  # To go back to the root :
-  ctrl + c
-  press e to exit
-  cd ..
-
-# 3) Enter challenge 2 Travel Planning System (TPS)
-  cd challenge2_TPS
-
-  # Load the main module
-  swipl main.pl
-
-  # Run example queries:
-  ?- print_All(bogota, medellin).
-  ?- print_All(bogota, medellin, 6, 7).
-  ?- print_Cheapest(bogota, santa_marta).
-  ?- print_Fastest(bogota, santa_marta).
-
-  # To exit Prolog:
-  ?- halt.
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
+
+
+
+
 
 
 
