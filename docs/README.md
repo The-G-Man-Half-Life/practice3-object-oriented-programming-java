@@ -367,14 +367,21 @@ Score: -0.057167211738001544
 
 ```bash
 # 1) Clone and enter the repo
-  git clone The-G-Man-Half-Life/practice2-logical-programming-prolog
-  cd practice2-logical-programming-prolog
+  git clone https://github.com/The-G-Man-Half-Life/practice3-object-oriented-programming-java.git
+  cd practice3-object-oriented-programming-java
 
-# 2) enter challenge 1 database queries
-  cd challenge1_database
+# 2) access to the src folder where the main file resides
+  cd src
+
+# 3) run the program
+  java Main.java
+
+// if wished to review the results in a more comprehensive way pls look at the ooutput folder
+where are the console outputs
   
 ```
 Made by: Mateo Montoya Ospina and Juan Pablo Lopez Lidueña
+
 
 
 
