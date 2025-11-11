@@ -2,6 +2,6 @@ These are the results of the simple linear
 regression test made with the data obtained 
 from IceCreamSellingData.scv:
 
-Weights: -2.126542401250901
-Bias: 15.9053078409119
-Score: -0.057167211738001544
+Weights: -0.1751842927078433
+Bias: 1.7748982594039712E-16
+Score: 0.03068953641154748
