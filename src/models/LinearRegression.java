@@ -37,7 +37,7 @@ public class LinearRegression {
 
 			// Extract the Bias
 			bias = column[0][0];
-			double[][] wB = MatrixOperations.splitMatrixVerticallBotton(column, 1);
+			double[][] wB = MatrixOperations.splitMatrixVerticallBottom(column, 1);
 
 			// Extract the Weights
 			weights = MatrixOperations.getColumn(wB, 0);

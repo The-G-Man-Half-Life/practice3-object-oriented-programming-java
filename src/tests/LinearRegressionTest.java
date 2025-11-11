@@ -9,7 +9,7 @@ public class LinearRegressionTest {
     private double[] dataY;
     private LinearRegression multipleLinearRegression = new LinearRegression();
 
-
+    // method that takes care of bringing all necessary components for testing the model
     public LinearRegressionTest(String path) {
 		// First we need to read the values from the CVS given.
 		// We can stablish a new class that is only about this.
@@ -30,14 +30,13 @@ public class LinearRegressionTest {
 		multipleLinearRegression.fit(dataX, dataY);
     }
 
+	//method that takes care of printing all the obtained results
     public void outputTest() {
+		// printing the results
         System.out.println("\nTest for data in \"" + dataFilePath + "\" (scaled)");
 		System.out.print("Weights:");
 		MatrixOperations.soutVector(multipleLinearRegression.getWeights());
 		System.out.println("Bias: " + multipleLinearRegression.getBias());
-		double[] yHat = multipleLinearRegression.predict(dataX);
-		for (double yi : yHat)
-			System.out.println("Y^: " + yi);
 		System.out.println("Score: " + multipleLinearRegression.score(dataX, dataY));
 		System.out.println("\n");
     }

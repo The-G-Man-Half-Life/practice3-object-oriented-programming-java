@@ -176,7 +176,7 @@ public abstract class MatrixOperations {
 	 * @param row Row(Index) up until the upper part is discarded.
 	 * @return Lower part of the input matrix.
 	 */
-	public static double[][] splitMatrixVerticallBotton(double[][] matrix, int row) {
+	public static double[][] splitMatrixVerticallBottom(double[][] matrix, int row) {
 		int n = matrix.length - row;
 		int m = matrix[0].length;
 
